@@ -21,9 +21,16 @@ public class ejercicio2 {
         for (int i = 0; i < array4x5.length; i++) {
             sumaFilas=0;
             for (int j = 0; j < array4x5[i].length; j++) {
-               sumaFilas=array4x5[i][j];
+                System.out.printf("%10s", array4x5[i][j]);
+                sumaFilas+=array4x5[i][j];
             }
-            System.out.println(sumaFilas);
+            System.out.printf("%10s",sumaFilas);
+            System.out.println();
+        }
+        for (int i = 0; i < array4x5.length; i++) {
+            for (int j = 0; j < ; j++) {
+
+            }
         }
     }
 }
