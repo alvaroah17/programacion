@@ -27,9 +27,9 @@ public class ejercicio2 {
             System.out.printf("%10s",sumaFilas);
             System.out.println();
         }
-        for (int i = 0; i < array4x5.length; i++) {
-            for (int j = 0; j < ; j++) {
-
+        for (int i = 0; i < array4x5[0].length; i++) {
+            for (int j = 0; j < array4x5.length; j++) {
+                
             }
         }
     }
