@@ -48,7 +48,7 @@ public class ejercicio6 {
                     indiceMaximo_i=i;
                     indiceMaximo_j=j;
                 }
-                if (array6x10[i][j]<posicionNumeroMinimo){
+                if (array6x10[i][j]==20){
                     posicionNumeroMinimo=array6x10[i][j];
                     indiceMinimo_i=i;
                     indiceMinimo_j=j;
