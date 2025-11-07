@@ -115,7 +115,7 @@ public class ejercicio7 {
         System.out.printf("- "+"%12s","La suma total de las columnas es = "+ sumaTotalColumnas);
         System.out.println();
         System.out.printf("- "+"%12s","La media aritmética es = "+ (double)valoresArray/ (double)posicionesArrayTotal);
-//--------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------
         for (int i = 0; i <array6x10.length ; i++) {
             for (int j = 0; j <array6x10[i].length ; j++) {
                 if (NumeroEsPrimo(array6x10[i][j])){
