@@ -25,7 +25,6 @@ public class ejercicio5 {
         int posicionNumeroMinimo=array6x10[0][0];
         int indiceMinimo_i =0;
         int indiceMinimo_j=0;
-        int sumaTotal=0;
         System.out.println("Array con 6x10 de numeros aleatorios entre el 0 al 1000");
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
         for (int i = 0; i < array6x10.length; i++) {
