@@ -23,6 +23,9 @@ public class ejercicio14 {
             System.out.println("- Introduce nombres por teclado hasta que introduzca la palabra Fin");
              nombreXteclado=sc.nextLine();
              ListaNombres.add(nombreXteclado);
+            if (nombreXteclado.equals("Fin")){
+                ListaNombres.remove(ListaNombres.size()-1);
+            }
         }while (!nombreXteclado.equals("Fin"));
         //4 Terminaria el bucle poniendo "Fin" y imprimimos lo siguiente
         System.out.println("- Busca en la lista el nombre que quieres buscar en ella para saber si está o no, y en que posición se encuentra si está en ella ");
