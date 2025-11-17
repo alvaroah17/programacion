@@ -1,7 +1,6 @@
 public class Usuario {
     /*ESTRUCTURA:
         ATRIBUTOS-->CONTRUCTOR-->METODOS GET Y SET-->METODO TOSTRING
-
     */
     //ATRIBUTOS
     private String nombre;
@@ -37,13 +36,18 @@ public class Usuario {
     }
 
     public String getEmail() {
-        return email;
+        if (email.contains("@")){
+            return this.email;
+        }
+        else {
+            return "Email sin @";
+        }
     }
 
     public String getContraseña() {
         return contraseña;
     }
-//-----------------------------------------------------------
+//-----------------------------------------------------------------
 
     public void setNombre(String nuevoNombre) {
         this.nombre = nuevoNombre;
@@ -74,9 +78,11 @@ public class Usuario {
     public void setContraseña(String nuevaContraseña) {
         this.contraseña = nuevaContraseña;
     }
+    //FUNCION CHECK
     public boolean checkUsuario(String email, String contraseña){
         return (this.email.equals(email) && this.contraseña.equals(contraseña));
     }
+    //METODO TOSTRING
     @Override
     public String toString() {
         return "El nombre es "+ this.nombre+ " y el apellido es "+this.apellidos+" la direccion es "+this.direccion+" el email es "+this.email+" el codigo postal es "+this.codigoPostal;
