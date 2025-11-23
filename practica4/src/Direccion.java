@@ -1,4 +1,7 @@
 public class Direccion {
+/*ESTRUCTURA:
+    ATRIBUTOS-->CONTRUCTOR-->METODOS GET Y SET-->METODO TOSTRING
+------------------------------------------------------------------*/
 //Declaración de ATRIBUTOS para la Clase (Entidad) Dirección
     private String calle;
     private String numero;
@@ -35,5 +38,25 @@ public class Direccion {
     public String getProvincia() {
         return provincia;
     }
+//---------------------------------------------------------------------------
     //METODOS SET
+    public void setCalle(String nuevaCalle) {
+        this.calle = nuevaCalle;
+    }
+
+    public void setNumero(String nuevoNumero) {
+        this.numero = nuevoNumero;
+    }
+
+    public void setCodigoPostal(int nuevoCodigoPostal) {
+        this.codigoPostal = nuevoCodigoPostal;
+    }
+
+    public void setLocalidad(String nuevaLlocalidad) {
+        this.localidad = nuevaLlocalidad;
+    }
+
+    public void setProvincia(String nuevaProvincia) {
+        this.provincia = nuevaProvincia;
+    }
 }
