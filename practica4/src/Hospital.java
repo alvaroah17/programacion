@@ -36,7 +36,12 @@ public class Hospital {
     public void setCIF (String CIF){
         this.CIF = CIF;
     }
+    //PREGUNTAR SI ESTO SIRVE PARA ALGO
     public void setAreas (Area a){
         this.areas.add(a);
+    }
+    //PREGUNTAR COMO FUNCIONA ESTO
+    public void agregarAreas (Area nueva){
+        this.areas.add(nueva);
     }
 }
