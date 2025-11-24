@@ -44,4 +44,8 @@ public class Area {
     public void sethospital(Hospital nuevoHospital){
         this.hospital=nuevoHospital;
     }
+    //FUNCIONES
+    public void añadirMedico(){
+        numMedicos++;
+    }
 }

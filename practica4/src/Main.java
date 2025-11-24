@@ -17,9 +17,11 @@ public class Main {
                 40,
                 "Masculino",
                 2240.50,
-                LocalDate.of(2006,9,15),
+                2006,
                 urgencias
         );
+        //AÑADIR MEDICOS
+        urgencias.añadirMedico();
         //AÑADIR AREAS
         //h1.getAreas().add(urgencias);
         h1.agregarAreas(urgencias);
@@ -27,5 +29,14 @@ public class Main {
         System.out.println(urgencias.getHospital().getNombre());
         System.out.println("El tamaño del array list es de = "+h1.getAreas().size());
         System.out.println(h1.getAreas().get(0).getNombre());
+        //IMPRIMIR FUNCIONES
+        System.out.println("El sueldo neto es ="+m1.sueldoNeto(20)+"€");
+        System.out.println("El 1er medico tiene "+m1.añosAntiguedad(2025)+" años de antiguedad");
+        System.out.println("Impuestos anuales a pagar = "+m1.impuestoSueldoAnual(21)+"€");
+        System.out.println("¿Cumple o excede la mayoria de edad? "+m1.comprobarEdad(30));
+
+
+
+
     }
 }
