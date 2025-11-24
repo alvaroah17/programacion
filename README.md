@@ -1,7 +1,10 @@
 # Programacion
 # **Practica 4 Java POO** / *Álvaro Aliaño* / **Java**
 <img width="346" height="81" alt="image" src="https://github.com/user-attachments/assets/2739b23c-202d-4c64-9598-0bd2aa9fe122" />
-___________________________________________________________________________________________________________________________________________# **Práctica: Sistema de Gestión Hospitalaria**
+
+___________________________________________________________________________________________________________________________________________
+
+# **Sistema de Gestión Hospitalaria**
 ___________________________________________________________________________________________________________________________________________
 **Objetivo**
 Desarrollar una aplicación Java sin usar herencia ni interfaces, para modelar y gestionar hospitales, áreas, médicos y contratos, implementando funciones de cálculo, comprobación y gestión de datos a través de una clase dedicada a la interfaz de usuario (MenuGestor).
