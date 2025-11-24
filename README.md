@@ -1,7 +1,6 @@
 # Programacion
 # **Practica 3 Array Bidimensionales** *Álvaro Aliaño* **Java**
-<img width="357" height="87" alt="image" src="https://github.com/user-attachments/assets/0634c70d-7138-4843-ab2d-715ac81b92b7" />
-
+<img width="346" height="81" alt="image" src="https://github.com/user-attachments/assets/2739b23c-202d-4c64-9598-0bd2aa9fe122" />
 ___________________________________________________________________________________________________________________________________________
 # **Práctica: Sistema de Gestión Hospitalaria**
 ___________________________________________________________________________________________________________________________________________
