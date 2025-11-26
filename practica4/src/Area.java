@@ -30,6 +30,9 @@ public class Area {
     public Hospital getHospital(){
         return hospital;
     }
+    public int getNumMedicos(){
+        return numMedicos;
+    }
 //---------------------------------------------------------------------------
     //METODO SET
     public void setNombre(String nuevoNombre){
@@ -43,6 +46,9 @@ public class Area {
     }
     public void sethospital(Hospital nuevoHospital){
         this.hospital=nuevoHospital;
+    }
+    public void setNumMedicos(int nuevoNumMedicos){
+        this.numMedicos=nuevoNumMedicos;
     }
     //FUNCIONES
     public void añadirMedico(){

@@ -73,13 +73,26 @@ public class Medico {
     public double sueldoNeto(double retencion){
         return (this.sueldoBruto-(this.sueldoBruto*retencion/100));
     }
-    public int añosAntiguedad(int añoActual){
-        return (añoActual-(fechaInicio));
+    public int anosAntiguedad(int anoActual){
+        return (anoActual-(fechaInicio));
     }
     public double impuestoSueldoAnual(double tasaImpuestos){
         return ((this.sueldoBruto*tasaImpuestos/100)*12);
     }
     public boolean comprobarEdad(int mayoriaEdad){
-        return (edad>=mayoriaEdad);
+        return (this.edad>=mayoriaEdad);
+    }
+    public double proximoAumento(double aumento, int anosRequeridos){
+       /* if (anosAntiguedad(2025)>=anosRequeridos){
+            return sueldoBruto+(sueldoBruto*aumento/100);
+        }
+        else {
+            return sueldoBruto;
+        }*/
+        return anosAntiguedad(2025)>=anosRequeridos?sueldoBruto+(sueldoBruto*aumento/100):sueldoBruto;
+    }
+    public void cambiarArea(Area otraArea){
+        this.area.setNumMedicos(area.getNumMedicos()-1);
+        otraArea.añadirMedico();
     }
 }

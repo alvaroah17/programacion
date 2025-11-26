@@ -8,7 +8,7 @@ public class Main {
 
         //AREAS
         Area urgencias=new Area ("Urgencias", "URG", 0, h1);
-
+        Area maternidad=new Area("Maternidad", "MAT", 1,h1);
 
         //MEDICOS
         Medico m1=new Medico(
@@ -25,18 +25,18 @@ public class Main {
         //AÑADIR AREAS
         //h1.getAreas().add(urgencias);
         h1.agregarAreas(urgencias);
+        //FUNCIONES AREA
+        m1.cambiarArea(maternidad);
         //PRUEBAS
         System.out.println(urgencias.getHospital().getNombre());
         System.out.println("El tamaño del array list es de = "+h1.getAreas().size());
         System.out.println(h1.getAreas().get(0).getNombre());
-        //IMPRIMIR FUNCIONES
+        //IMPRIMIR FUNCIONES MEDICO
         System.out.println("El sueldo neto es ="+m1.sueldoNeto(20)+"€");
-        System.out.println("El 1er medico tiene "+m1.añosAntiguedad(2025)+" años de antiguedad");
+        System.out.println("El 1er medico tiene "+m1.anosAntiguedad(2025)+" años de antiguedad");
         System.out.println("Impuestos anuales a pagar = "+m1.impuestoSueldoAnual(21)+"€");
         System.out.println("¿Cumple o excede la mayoria de edad? "+m1.comprobarEdad(30));
-
-
-
-
+        System.out.println("El sueldo con aumento SI cumple los años requeridos es = "+m1.proximoAumento(500.0, 17)+"€");
+        System.out.println("El");
     }
 }
