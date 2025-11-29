@@ -54,4 +54,18 @@ public class Area {
     public void añadirMedico(){
         numMedicos++;
     }
+    public String compararNºMedicos (Area otraArea){
+        if (this.numMedicos>otraArea.numMedicos){
+            return this.nombre+" tiene más Nº de medicos que "+otraArea.getNombre();
+        }
+        else if (this.numMedicos==otraArea.numMedicos) {
+            return "El Nº de medicos de "+this.nombre+" y "+otraArea.nombre+" son iguales";
+        }
+        else {
+            return otraArea.nombre+" tiene mas Nº de medicos que "+this.nombre;
+        }
+    }
+    public int capacidadRestanteNºMedicos (int capacidadMaxima){
+        return (capacidadMaxima-this.numMedicos);
+    }
 }

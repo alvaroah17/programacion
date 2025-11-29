@@ -83,7 +83,8 @@ public class Medico {
         return (this.edad>=mayoriaEdad);
     }
     public double proximoAumento(double aumento, int anosRequeridos){
-       /* if (anosAntiguedad(2025)>=anosRequeridos){
+       /*FORMA DE HACERLO CON IF
+        if (anosAntiguedad(2025)>=anosRequeridos){
             return sueldoBruto+(sueldoBruto*aumento/100);
         }
         else {
@@ -93,6 +94,9 @@ public class Medico {
     }
     public void cambiarArea(Area otraArea){
         this.area.setNumMedicos(area.getNumMedicos()-1);
+        //FORMA CON FUNCION YA CREADA
         otraArea.añadirMedico();
+        //FORMA CON SET
+        //otraArea.setNumMedicos(+1);
     }
 }
