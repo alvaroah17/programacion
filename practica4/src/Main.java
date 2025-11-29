@@ -1,14 +1,20 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
     ///PRECARGA DE DATOS
+    ////ARRAYLIST OBJETOS
+        ArrayList<Direccion> direcciones=new ArrayList<>();
+        ArrayList<Hospital> hospitales=new ArrayList<>();
+        ArrayList<Area> areas=new ArrayList<>();
+        ArrayList<Medico> medicos=new ArrayList<>();
+        ArrayList<Contrato> contratos=new ArrayList<>();
     ////HOSPITALES
         Hospital h1=new Hospital(
                 "San Juan Grande",
                 "H001"
         );
-
     ////AREAS
         Area urgencias=new Area (
                 "Urgencias",
@@ -22,12 +28,6 @@ public class Main {
                 1,
                 h1
         );
-        ///AÑADIR AREAS a HOSPITAL
-        //SIN FUNCION
-            //h1.getAreas().add(urgencias);
-        //CON FUNCION
-        h1.agregarAreas(urgencias);
-        h1.agregarAreas(maternidad);
     ////MEDICOS
         Medico m1=new Medico(
                 "32750907L",
@@ -56,18 +56,41 @@ public class Main {
                 2010,
                 urgencias
         );
-        ///AÑADIR MEDICOS a AREAS
-        urgencias.añadirMedico();
-        maternidad.añadirMedico();
-        urgencias.añadirMedico();
     ////CONTRATOS
         Contrato contrato1=new Contrato(
                 2006,
                 m1,
                 h1
-
         );
-    ////PRUEBAS
+        Direccion direccionH1= new Direccion(
+                "Avenida Nacional",
+                "Nº38",
+                11407,
+                "Jerez",
+                "Cádiz"
+        );
+        hospitales.add(h1);
+        medicos.add(m1);
+        medicos.add(m2);
+        medicos.add(m3);
+        contratos.add(contrato1);
+        direcciones.add(direccionH1);
+
+        //No se si hay que añadir al ARRAYLIST AREAS ya que ya estan añadidas al
+        // ARRAYLIST AREAS DE HOSPITAL
+        ///AÑADIR AREAS a HOSPITAL
+        //SIN FUNCION
+        //h1.getAreas().add(urgencias);
+        //CON FUNCION
+        h1.agregarAreas(urgencias);
+        h1.agregarAreas(maternidad);
+        ///AÑADIR MEDICOS a AREAS
+        urgencias.añadirMedico();
+        maternidad.añadirMedico();
+        urgencias.añadirMedico();
+        System.out.println();
+    /* A PARIR DE AQUI SON PRUEBAS Y IMPRIMIENDO LAS FUNCIONAS PARA CORROBORAR QUE FUNCIONAN BIEN
+        ////PRUEBAS
         System.out.println("|PRUEBAS|");
     //----------------------------------------------------------------------------------------------------------------------------------------------
         System.out.println(urgencias.getHospital().getNombre());
@@ -125,6 +148,6 @@ public class Main {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------
         System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-
+    */
     }
 }
