@@ -2,13 +2,13 @@ public class Area {
 /*ESTRUCTURA:
     ATRIBUTOS-->CONTRUCTOR-->METODOS GET Y SET-->METODO TOSTRING
 ------------------------------------------------------------------*/
-//Declaración de ATRIBUTOS para la Clase (Entidad) Area
+///Declaración de ATRIBUTOS para la Clase (Entidad) Area
     private String nombre;
     private String identificador;
     private int planta;
     private Hospital hospital;
     private int numMedicos;
-//CONSTRUCTOR
+///CONSTRUCTOR
     public Area (String nombre, String identificador, int planta, Hospital hospital){
         this.nombre=nombre;
         this.identificador=identificador;
@@ -16,7 +16,7 @@ public class Area {
         this.hospital=hospital;
         this.numMedicos=0;
     }
-//METODOS GETTER Y SETTER
+///METODOS GETTER Y SETTER
     //METODO GET
     public String getNombre(){
         return nombre;
@@ -50,7 +50,7 @@ public class Area {
     public void setNumMedicos(int nuevoNumMedicos){
         this.numMedicos=nuevoNumMedicos;
     }
-    //FUNCIONES
+///FUNCIONES
     public void añadirMedico(){
         numMedicos++;
     }

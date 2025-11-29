@@ -33,13 +33,40 @@ public class Main {
                 "32750907L",
                 "Marco",
                 40,
-                "Masculino",
+                "No binario",
                 2240.50,
                 2006,
                 urgencias
         );
+        Medico m2=new Medico(
+                "32758395P",
+                "Sergio",
+                50,
+                "Masculino",
+                2550.0,
+                1999,
+                maternidad
+        );
+        Medico m3=new Medico(
+                "32347922F",
+                "Cristian",
+                30,
+                "Masculino",
+                2100.0,
+                2010,
+                urgencias
+        );
         ///AÑADIR MEDICOS a AREAS
         urgencias.añadirMedico();
+        maternidad.añadirMedico();
+        urgencias.añadirMedico();
+    ////CONTRATOS
+        Contrato contrato1=new Contrato(
+                2006,
+                m1,
+                h1
+
+        );
     ////PRUEBAS
         System.out.println("|PRUEBAS|");
     //----------------------------------------------------------------------------------------------------------------------------------------------
@@ -80,12 +107,24 @@ public class Main {
     ////IMPRIMIR FUNCIONES HOSPITAL
         System.out.println("|FUNCIONES HOSPITAL|");
     //----------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+            //Cálculo Agregado
+        System.out.println("El numero total de medicos en todas las areas es = "+h1.numeroTotalMedicos());
+            //Cálculo de Proporción
+        System.out.println("La proporcion del area "+h1.proporcionMedicosArea("URG")+"%");
+            //Comprobación de Existencia
+        System.out.println("Comprobacion SI existe o NO un area, si existe devolvera TRUE sino FALSE = "+h1.existeArea("URG"));
     //----------------------------------------------------------------------------------------------------------------------------------------------
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
+    ////IMPRIMIR FUNCIONES CONTRATO
+        System.out.println("|FUNCIONES CONTRATO|");
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+            //Comprobación de Año
+        System.out.println("Comprobacion si el año contrato coincide con el dado, si coincide devolvera TRUE sino FALSE = "+contrato1.comprobacionAnio(2006));
+            //Cálculo de Vigencia
+        System.out.println("El número total de dias transcurridos desde la creación del contrato es = "+contrato1.diasDesdeCreacion(2025)+" dias");
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
 
     }
-
 }

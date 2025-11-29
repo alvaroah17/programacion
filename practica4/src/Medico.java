@@ -4,7 +4,7 @@ public class Medico {
 /*ESTRUCTURA:
     ATRIBUTOS-->CONTRUCTOR-->METODOS GET Y SET-->METODO TOSTRING
 ------------------------------------------------------------------*/
-//Declaración de ATRIBUTOS para la Clase (Entidad) Medico
+///Declaración de ATRIBUTOS para la Clase (Entidad) Medico
     private String DNI;
     private String nombre;
     private int edad;
@@ -13,7 +13,7 @@ public class Medico {
     private int fechaInicio;
     private Area area;
 
-//CONSTRUCTOR
+///CONSTRUCTOR
     public Medico (String DNI, String nombre, int edad, String sexo, double sueldoBruto, int fechaInicio, Area area ){
         this.DNI=DNI;
         this.nombre=nombre;
@@ -23,7 +23,7 @@ public class Medico {
         this.fechaInicio=fechaInicio;
         this.area=area;
     }
-//METODOS GETTER Y SETTER
+///METODOS GETTER Y SETTER
     //METODOS GET
     public String getDNI(){
         return DNI;
