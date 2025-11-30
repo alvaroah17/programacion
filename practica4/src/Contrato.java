@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class Contrato {
 /*ESTRUCTURA:
     ATRIBUTOS-->CONTRUCTOR-->METODOS GET Y SET-->METODO TOSTRING
@@ -8,11 +6,13 @@ public class Contrato {
     private int fechaCreacion;
     private Medico medico;
     private Hospital hospital;
+    private String codContrato;
 ///CONSTRUCTOR
-    public Contrato(int fechaCreacion, Medico medico, Hospital hospital){
+    public Contrato(int fechaCreacion, Medico medico, Hospital hospital, String codContrato){
         this.fechaCreacion=fechaCreacion;
         this.medico=medico;
         this.hospital=hospital;
+        this.codContrato=codContrato;
     }
 ///METODOS GETTER Y SETTER
     //METODOS GET
@@ -25,6 +25,9 @@ public class Contrato {
     public Hospital getHospital(){
         return hospital;
     }
+    public String getCodContrato(){
+        return codContrato;
+    }
 //---------------------------------------------------------------------------
     //METODOS SET
     public void setFechaCreacion(int nuevaFechaCreacion){
@@ -36,14 +39,15 @@ public class Contrato {
     public void setHospital(Hospital nuevoHospital){
         this.hospital=nuevoHospital;
     }
+    public void setCodContrato(String nuevoCodContrato){
+        this.codContrato=nuevoCodContrato;
+    }
 ///FUNCIONES
     public boolean comprobacionAnio (int anio) {
         return (anio == fechaCreacion);
     }
     public int diasDesdeCreacion (int anioActual){
-        int diasTranscurridos=0;
-        diasTranscurridos+=(anioActual-this.fechaCreacion)*365;
-        return diasTranscurridos;
+        return anioActual-this.fechaCreacion;
     }
 }
 

@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class Medico {
 /*ESTRUCTURA:
     ATRIBUTOS-->CONTRUCTOR-->METODOS GET Y SET-->METODO TOSTRING
@@ -95,7 +93,7 @@ public class Medico {
     public void cambiarArea(Area otraArea){
         this.area.setNumMedicos(area.getNumMedicos()-1);
         //FORMA CON FUNCION YA CREADA
-        otraArea.añadirMedico();
+        otraArea.aniadirMedico();
         //FORMA CON SET
         //otraArea.setNumMedicos(+1);
     }

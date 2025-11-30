@@ -51,7 +51,7 @@ public class Area {
         this.numMedicos=nuevoNumMedicos;
     }
 ///FUNCIONES
-    public void añadirMedico(){
+    public void aniadirMedico(){
         numMedicos++;
     }
     public String compararNºMedicos (Area otraArea){
