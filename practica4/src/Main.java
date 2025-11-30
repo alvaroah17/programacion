@@ -1,35 +1,49 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
-    ///PRECARGA DE DATOS
+
     ////ARRAYLIST OBJETOS
-        ArrayList<Direccion> direcciones=new ArrayList<>();
-        ArrayList<Hospital> hospitales=new ArrayList<>();
-        ArrayList<Area> areas=new ArrayList<>();
-        ArrayList<Medico> medicos=new ArrayList<>();
-        ArrayList<Contrato> contratos=new ArrayList<>();
-    ////HOSPITALES
-        Hospital h1=new Hospital(
+    static ArrayList<Direccion> direcciones = new ArrayList<>();
+    static ArrayList<Hospital> hospitales = new ArrayList<>();
+    static ArrayList<Area> areas = new ArrayList<>();
+    static ArrayList<Medico> medicos = new ArrayList<>();
+    static ArrayList<Contrato> contratos = new ArrayList<>();
+
+    public static void main(String[] args) {
+        preCargaDatos();
+
+        // LLAMADA AL MENÚ
+        MenuGestor.ejecutarMenuPrincipal();
+    }
+
+    ///PRECARGA DE DATOS
+    public static void preCargaDatos() {
+
+        ////HOSPITALES
+        Hospital h1 = new Hospital(
                 "San Juan Grande",
                 "H001"
         );
-    ////AREAS
-        Area urgencias=new Area (
+        hospitales.add(h1);
+
+        ////AREAS
+        Area urgencias = new Area(
                 "Urgencias",
                 "URG",
                 0,
                 h1
         );
-        Area maternidad=new Area(
+        Area maternidad = new Area(
                 "Maternidad",
                 "MAT",
                 1,
                 h1
         );
-    ////MEDICOS
-        Medico m1=new Medico(
+        areas.add(urgencias);
+        areas.add(maternidad);
+
+        ////MEDICOS
+        Medico m1 = new Medico(
                 "32750907L",
                 "Marco",
                 40,
@@ -38,7 +52,7 @@ public class Main {
                 2006,
                 urgencias
         );
-        Medico m2=new Medico(
+        Medico m2 = new Medico(
                 "32758395P",
                 "Sergio",
                 50,
@@ -47,7 +61,7 @@ public class Main {
                 1999,
                 maternidad
         );
-        Medico m3=new Medico(
+        Medico m3 = new Medico(
                 "32347922F",
                 "Cristian",
                 30,
@@ -56,98 +70,91 @@ public class Main {
                 2010,
                 urgencias
         );
-    ////CONTRATOS
-        Contrato contrato1=new Contrato(
+        medicos.add(m1);
+        medicos.add(m2);
+        medicos.add(m3);
+
+        ////CONTRATOS (constructor ya corregido)
+        Contrato contrato1 = new Contrato(
                 2006,
                 m1,
-                h1
+                h1,
+                "CON1"
         );
-        Direccion direccionH1= new Direccion(
+        Contrato contrato2 = new Contrato(
+                1999,
+                m2,
+                h1,
+                "CON2"
+        );
+        Contrato contrato3 = new Contrato(
+                2010,
+                m3,
+                h1,
+                "CON3"
+        );
+        contratos.add(contrato1);
+        contratos.add(contrato2);
+        contratos.add(contrato3);
+
+        ////DIRECCIONES
+        Direccion direccionH1 = new Direccion(
                 "Avenida Nacional",
                 "Nº38",
                 11407,
                 "Jerez",
                 "Cádiz"
         );
-        hospitales.add(h1);
-        medicos.add(m1);
-        medicos.add(m2);
-        medicos.add(m3);
-        contratos.add(contrato1);
         direcciones.add(direccionH1);
 
-        //No se si hay que añadir al ARRAYLIST AREAS ya que ya estan añadidas al
-        // ARRAYLIST AREAS DE HOSPITAL
-        ///AÑADIR AREAS a HOSPITAL
-        //SIN FUNCION
-        //h1.getAreas().add(urgencias);
-        //CON FUNCION
+        ///AÑADIR AREAS al HOSPITAL
         h1.agregarAreas(urgencias);
         h1.agregarAreas(maternidad);
-        ///AÑADIR MEDICOS a AREAS
-        urgencias.añadirMedico();
-        maternidad.añadirMedico();
-        urgencias.añadirMedico();
-        System.out.println();
-    /* A PARIR DE AQUI SON PRUEBAS Y IMPRIMIENDO LAS FUNCIONAS PARA CORROBORAR QUE FUNCIONAN BIEN
-        ////PRUEBAS
-        System.out.println("|PRUEBAS|");
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-        System.out.println(urgencias.getHospital().getNombre());
-        System.out.println("El tamaño del array list es de = "+h1.getAreas().size());
-        System.out.println(h1.getAreas().get(0).getNombre());
-        System.out.println(h1.getAreas().get(1).getNombre());
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-    ////IMPRIMIR FUNCIONES MEDICO
-        System.out.println("|FUNCIONES MEDICO|");
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-            //Cálculo de Sueldo Neto
-        System.out.println("El sueldo neto es ="+m1.sueldoNeto(20)+"€");
-            //Cálculo de Antigüedad
-        System.out.println("El 1er medico tiene "+m1.anosAntiguedad(2025)+" años de antiguedad");
-            //Cálculo de Impuestos Anuales
-        System.out.println("Impuestos anuales a pagar = "+m1.impuestoSueldoAnual(25)+"€");
-            //Comprobación de Edad
-        System.out.println("¿Cumple o excede la mayoria de edad? "+m1.comprobarEdad(30));
-            //Cálculo de Aumento
-        System.out.println("El sueldo con aumento SI cumple los años requeridos es = "+m1.proximoAumento(10.0, 17)+"€");
-            //Gestión de Área
-        m1.cambiarArea(maternidad);//LLAMAMIENTO FUNCION CAMBIAR MEDICO (m1) DE AREA "URGENCIAS" a "MATERNIDAD"
-        System.out.println("El Nº de medicos del area "+urgencias.getNombre()+" es = "+urgencias.getNumMedicos());
-        System.out.println("El Nº de medicos del area "+maternidad.getNombre()+" es = "+maternidad.getNumMedicos());
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-    ////IMPRIMIR FUNCIONES AREA
-        System.out.println("|FUNCIONES AREA|");
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-            //Comprobación y Comparación
-        System.out.println("Comparacion entre el Nº de medicos de 2 Areas = "+urgencias.compararNºMedicos(maternidad));
-            //Cálculo de Capacidad
-        System.out.println("El número de medicos que se pueden añadir antes de llegar al límite son = "+maternidad.capacidadRestanteNºMedicos(10));
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-    ////IMPRIMIR FUNCIONES HOSPITAL
-        System.out.println("|FUNCIONES HOSPITAL|");
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-            //Cálculo Agregado
-        System.out.println("El numero total de medicos en todas las areas es = "+h1.numeroTotalMedicos());
-            //Cálculo de Proporción
-        System.out.println("La proporcion del area "+h1.proporcionMedicosArea("URG")+"%");
-            //Comprobación de Existencia
-        System.out.println("Comprobacion SI existe o NO un area, si existe devolvera TRUE sino FALSE = "+h1.existeArea("URG"));
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-    ////IMPRIMIR FUNCIONES CONTRATO
-        System.out.println("|FUNCIONES CONTRATO|");
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-            //Comprobación de Año
-        System.out.println("Comprobacion si el año contrato coincide con el dado, si coincide devolvera TRUE sino FALSE = "+contrato1.comprobacionAnio(2006));
-            //Cálculo de Vigencia
-        System.out.println("El número total de dias transcurridos desde la creación del contrato es = "+contrato1.diasDesdeCreacion(2025)+" dias");
 
-    //----------------------------------------------------------------------------------------------------------------------------------------------
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------");
-    */
+        ///AÑADIR MEDICOS a ÁREAS
+        urgencias.aniadirMedico();
+        maternidad.aniadirMedico();
+        urgencias.aniadirMedico();
+    }
+
+    public static Hospital buscarHospital(String CIFhospital){
+        for (int i = 0; i < hospitales.size(); i++) {
+            Hospital hospitalAdevolver = hospitales.get(i);
+            if (hospitalAdevolver.getCIF().equals(CIFhospital)){
+                return hospitalAdevolver;
+            }
+        }
+        return null;
+    }
+
+    public static Area buscarArea(String IDArea){
+        for (int i = 0; i < areas.size(); i++) {
+            Area areaAdevolver = areas.get(i);
+            if (areaAdevolver.getIdentificador().equals(IDArea)){
+                return areaAdevolver;
+            }
+        }
+        return null;
+    }
+
+    public static Medico buscarMedico(String DNIMedico){
+        for (int i = 0; i < medicos.size(); i++) {
+            Medico medicoAdevolver = medicos.get(i);
+            if (medicoAdevolver.getDNI().equals(DNIMedico)){
+                return medicoAdevolver;
+            }
+        }
+        return null;
+    }
+
+    public static Contrato buscarContrato(String codContrato){
+        for (int i = 0; i < contratos.size(); i++) {
+            Contrato contratoAdevolver = contratos.get(i);
+            if (contratoAdevolver.getCodContrato().equals(codContrato)){
+                System.out.print("El contrato que buscas por el codContrato es: ");
+                return contratoAdevolver;
+            }
+        }
+        return null;
     }
 }
