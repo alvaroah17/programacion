@@ -77,8 +77,23 @@ transcurridos desde la creación del contrato.
 
 ___________________________________________________________________________________________________________________________________________
 **3. 🖱️ Clases de Ejecución**
-RELLENAR EJERCICIO 3
-___________________________________________________________________________________________________________________________________________
+**A. Clase Main**
+
+● Precarga de datos iniciales de las distintas clases;
+
+● Contiene las listas estáticas (ArrayList) para almacenar todos los objetos creados (Hospitales, Areas, Medicos, Contratos).
+
+● Debe contener métodos utilitarios para la búsqueda (buscarMedico(dni),
+buscarArea(id), etc.).
+
+● Visualización del menú ejecutarMenuPrincipal()
+
+**B. Clase MenuGestor**
+
+● Implemente la lógica del menú principal para interactuar con el usuario.
+El menú debe permitir las siguientes operaciones (solicitando la información necesaria por consola):
+
+<img width="388" height="573" alt="image" src="https://github.com/user-attachments/assets/9e97a7a4-1fe4-45dd-a068-57b5dd320b8b" />
 
 ___________________________________________________________________________________________________________________________________________
 
