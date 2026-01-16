@@ -1,12 +1,19 @@
 package com.juego.razas;
 
-public class Elfo extends Razas{
-    public Elfo(){
-        super(
-                90,
-                4,
-                7,
-                6
-        );
+import com.juego.modelo.Estadistica;
+
+public class Elfo implements Raza{
+    private Estadistica estadisticas;
+
+    public Elfo(Estadistica estadisticas){
+        this.estadisticas=estadisticas;
+    }
+
+    @Override
+    public void establecerEstadisticas(Estadistica estadisticas) {
+        estadisticas.setVida(90);
+        estadisticas.setFuerza(7);
+        estadisticas.setDestreza(4);
+        estadisticas.setInteligencia(4);
     }
 }

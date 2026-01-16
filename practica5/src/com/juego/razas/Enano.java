@@ -1,12 +1,19 @@
 package com.juego.razas;
 
-public class Enano extends Razas {
-    public Enano(){
-        super(
-                110,
-                7,
-                4,
-                4
-        );
+import com.juego.modelo.Estadistica;
+
+public class Enano implements Raza {
+    private Estadistica estadisticas;
+
+    public Enano(Estadistica estadisticas){
+        this.estadisticas=estadisticas;
+    }
+
+    @Override
+    public void establecerEstadisticas(Estadistica estadisticas) {
+        estadisticas.setVida(110);
+        estadisticas.setFuerza(7);
+        estadisticas.setDestreza(4);
+        estadisticas.setInteligencia(4);
     }
 }

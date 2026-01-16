@@ -1,12 +1,24 @@
 package com.juego.clases;
 
-public class Bardo extends Clases{
-    public Bardo(){
-        super(
-                90,
-                0,
-                0,
-                3
-        );
+import com.juego.modelo.Estadistica;
+import com.juego.modelo.Personaje;
+
+public class Bardo implements Clase{
+
+    private Estadistica estadisticas;
+
+    public Bardo(Estadistica estadisticas){
+        this.estadisticas=estadisticas;
+    }
+
+    @Override
+    public void agregarHabilidad(Personaje personaje) {
+
+    }
+
+    @Override
+    public void aplicarBonificadores(Estadistica estadisticas) {
+        estadisticas.setVida(estadisticas.getVida()+90);
+        estadisticas.setInteligencia(estadisticas.getInteligencia()+3);
     }
 }

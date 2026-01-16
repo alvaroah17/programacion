@@ -1,12 +1,20 @@
 package com.juego.razas;
 
-public class Humano extends Razas{
-    public Humano(){
-        super(
-                100,
-                5,
-                5,
-                5
-        );
+import com.juego.modelo.Estadistica;
+
+public class Humano implements Raza{
+
+    private Estadistica estadisticas;
+
+    public Humano(Estadistica estadisticas){
+        this.estadisticas=estadisticas;
+    }
+
+    @Override
+    public void establecerEstadisticas(Estadistica estadisticas) {
+        estadisticas.setVida(100);
+        estadisticas.setFuerza(5);
+        estadisticas.setDestreza(5);
+        estadisticas.setInteligencia(5);
     }
 }

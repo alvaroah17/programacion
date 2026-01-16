@@ -1,15 +1,25 @@
 package com.juego.clases;
 
 import com.juego.habilidades.CuraCuerpoAcuerpo;
+import com.juego.modelo.Estadistica;
+import com.juego.modelo.Personaje;
 
-public class Sacerdote extends Clases{
-    public Sacerdote(){
-        super(
-                95,
-                0,
-                0,
-                3
-        );
+public class Sacerdote implements Clase{
+    Estadistica estadisticas;
+
+    public Sacerdote (Estadistica estadisticas){
+        this.estadisticas=estadisticas;
     }
-    CuraCuerpoAcuerpo pocionVidaGrande = new CuraCuerpoAcuerpo();
+
+
+    @Override
+    public void agregarHabilidad(Personaje personaje) {
+
+    }
+
+    @Override
+    public void aplicarBonificadores(Estadistica estadisticas) {
+        estadisticas.setVida(estadisticas.getVida()+95);
+        estadisticas.setInteligencia(estadisticas.getInteligencia()+3);
+    }
 }
