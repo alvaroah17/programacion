@@ -1,6 +1,5 @@
 package com.juego.clases;
 
-import com.juego.habilidades.CuraCuerpoAcuerpo;
 import com.juego.modelo.Estadistica;
 import com.juego.modelo.Personaje;
 
