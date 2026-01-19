@@ -39,6 +39,14 @@ public class CuracionMedia implements Habilidades {
 
     @Override
     public void usarHabilidad() {
+    }
 
+    @Override
+    public String toString() {
+        return "CuracionMedia{" +
+                "nombre='" + nombre + '\'' +
+                ", curacion=" + curacion +
+                ", usos=" + usos +
+                '}';
     }
 }

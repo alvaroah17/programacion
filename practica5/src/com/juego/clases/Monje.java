@@ -1,19 +1,27 @@
 package com.juego.clases;
 
+import com.juego.habilidades.Habilidades;
+import com.juego.habilidades.curacion.CuracionGrande;
+import com.juego.habilidades.monje.GolpePalma;
+import com.juego.habilidades.monje.OndaChi;
 import com.juego.modelo.Estadistica;
 import com.juego.modelo.Personaje;
 
-public class Monje implements Clase{
-    Estadistica estadisticas;
+import java.util.ArrayList;
 
-    public Monje (Estadistica estadisticas){
-        this.estadisticas=estadisticas;
+public class Monje implements Clase{
+
+    public Monje (){
+
     }
 
 
     @Override
     public void agregarHabilidad(Personaje personaje) {
-
+        ArrayList <Habilidades> listaHabilidades = personaje.getListaHabilidades();
+        listaHabilidades.add(new GolpePalma());
+        listaHabilidades.add(new OndaChi());
+        listaHabilidades.add(new CuracionGrande());
     }
 
     @Override

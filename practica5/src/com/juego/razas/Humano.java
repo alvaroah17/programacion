@@ -6,8 +6,8 @@ public class Humano implements Raza{
 
     private Estadistica estadisticas;
 
-    public Humano(Estadistica estadisticas){
-        this.estadisticas=estadisticas;
+    public Humano(){
+
     }
 
     @Override

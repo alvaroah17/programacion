@@ -41,4 +41,13 @@ public class CuracionPequenia implements Habilidades {
     public void usarHabilidad() {
 
     }
+
+    @Override
+    public String toString() {
+        return "CuracionPequenia{" +
+                "nombre='" + nombre + '\'' +
+                ", curacion=" + curacion +
+                ", usos=" + usos +
+                '}';
+    }
 }

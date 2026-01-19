@@ -41,4 +41,13 @@ public class CuracionGrande implements Habilidades {
     public void usarHabilidad() {
 
     }
+
+    @Override
+    public String toString() {
+        return "CuracionGrande{" +
+                "nombre='" + nombre + '\'' +
+                ", cura=" + cura +
+                ", usos=" + usos +
+                '}';
+    }
 }

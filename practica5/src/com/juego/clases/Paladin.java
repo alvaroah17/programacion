@@ -1,7 +1,13 @@
 package com.juego.clases;
 
+import com.juego.habilidades.Habilidades;
+import com.juego.habilidades.curacion.CuracionMedia;
+import com.juego.habilidades.paladin.Estocada;
+import com.juego.habilidades.paladin.JabalinaCrucificadora;
 import com.juego.modelo.Estadistica;
 import com.juego.modelo.Personaje;
+
+import java.util.ArrayList;
 
 public class Paladin implements Clase{
     Estadistica estadisticas;
@@ -13,7 +19,10 @@ public class Paladin implements Clase{
 
     @Override
     public void agregarHabilidad(Personaje personaje) {
-
+        ArrayList<Habilidades> listaHabilidades = personaje.getListaHabilidades();
+        listaHabilidades.add(new Estocada());
+        listaHabilidades.add(new JabalinaCrucificadora());
+        listaHabilidades.add(new CuracionMedia());
     }
 
     @Override

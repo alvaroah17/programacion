@@ -41,4 +41,13 @@ public class SinfoniaEstridente implements Habilidades {
     public void usarHabilidad() {
 
     }
+
+    @Override
+    public String toString() {
+        return "SinfoniaEstridente{" +
+                "nombre='" + nombre + '\'' +
+                ", daño=" + daño +
+                ", usos=" + usos +
+                '}';
+    }
 }

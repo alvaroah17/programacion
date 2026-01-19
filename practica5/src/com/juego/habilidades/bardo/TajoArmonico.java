@@ -41,4 +41,13 @@ public class TajoArmonico implements Habilidades {
     public void usarHabilidad() {
 
     }
+
+    @Override
+    public String toString() {
+        return "TajoArmonico{" +
+                "nombre='" + nombre + '\'' +
+                ", daño=" + daño +
+                ", usos=" + usos +
+                '}';
+    }
 }

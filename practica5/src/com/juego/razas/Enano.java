@@ -5,8 +5,7 @@ import com.juego.modelo.Estadistica;
 public class Enano implements Raza {
     private Estadistica estadisticas;
 
-    public Enano(Estadistica estadisticas){
-        this.estadisticas=estadisticas;
+    public Enano(){;
     }
 
     @Override

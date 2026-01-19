@@ -12,4 +12,55 @@ public class Personaje {
     private Raza raza;
     private Estadistica estadisticas;
     private ArrayList<Habilidades> listaHabilidades;
+
+    public Personaje(String nombre, Raza raza, Clase clase, Estadistica estadisticas) {
+        this.nombre = nombre;
+        this.raza = raza;
+        this.clase = clase;
+        this.estadisticas = estadisticas;
+        this.listaHabilidades = new ArrayList<>();
+        this.raza.establecerEstadisticas(this.estadisticas);
+        this.clase.aplicarBonificadores(this.estadisticas);
+        this.clase.agregarHabilidad(this);
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Clase getClase() {
+        return clase;
+    }
+
+    public void setClase(Clase clase) {
+        this.clase = clase;
+    }
+
+    public Raza getRaza() {
+        return raza;
+    }
+
+    public void setRaza(Raza raza) {
+        this.raza = raza;
+    }
+
+    public Estadistica getEstadisticas() {
+        return estadisticas;
+    }
+
+    public void setEstadisticas(Estadistica estadisticas) {
+        this.estadisticas = estadisticas;
+    }
+
+    public ArrayList<Habilidades> getListaHabilidades() {
+        return listaHabilidades;
+    }
+
+    public void setListaHabilidades(ArrayList<Habilidades> listaHabilidades) {
+        this.listaHabilidades = listaHabilidades;
+    }
 }

@@ -41,4 +41,14 @@ public class Estadistica {
     public void setInteligencia(int inteligencia) {
         this.inteligencia = inteligencia;
     }
+
+    @Override
+    public String toString() {
+        return "Estadistica{" +
+                "vida=" + vida +
+                ", fuerza=" + fuerza +
+                ", destreza=" + destreza +
+                ", inteligencia=" + inteligencia +
+                '}';
+    }
 }
