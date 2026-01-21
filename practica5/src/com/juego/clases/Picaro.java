@@ -10,10 +10,8 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Picaro implements Clase{
-    Estadistica estadisticas;
 
     public Picaro (Estadistica estadisticas){
-        this.estadisticas=estadisticas;
     }
 
 

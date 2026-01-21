@@ -10,10 +10,8 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Sacerdote implements Clase{
-    Estadistica estadisticas;
 
     public Sacerdote (Estadistica estadisticas){
-        this.estadisticas=estadisticas;
     }
 
 

@@ -10,10 +10,8 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Mago implements Clase{
-    Estadistica estadisticas;
 
     public Mago (Estadistica estadisticas){
-        this.estadisticas=estadisticas;
     }
 
 

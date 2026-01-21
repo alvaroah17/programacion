@@ -10,10 +10,8 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Paladin implements Clase{
-    Estadistica estadisticas;
 
     public Paladin (Estadistica estadisticas){
-        this.estadisticas=estadisticas;
     }
 
 
