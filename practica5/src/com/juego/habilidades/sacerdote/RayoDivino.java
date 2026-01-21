@@ -39,8 +39,20 @@ public class RayoDivino implements Habilidades {
         this.usos = usos;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public void usarHabilidad() {
-
+        if (this.usos>0)
+            this.usos--;
+        else {
+            this.usos=0;
+        }
     }
 }

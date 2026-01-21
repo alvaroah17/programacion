@@ -5,13 +5,13 @@ import com.juego.habilidades.Habilidades;
 public class OndaChi implements Habilidades {
     private String nombre;
     private String tipo;
-    private int daño;
+    private int cantidadDaño;
     private int usos;
 
     public OndaChi(){
         this.nombre="Onda de Chi";
         this.tipo="Daño";
-        this.daño=110;
+        this.cantidadDaño =110;
         this.usos=1;
     }
 
@@ -23,12 +23,12 @@ public class OndaChi implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getCantidadDaño() {
+        return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setCantidadDaño(int cantidadDaño) {
+        this.cantidadDaño = cantidadDaño;
     }
 
     public int getUsos() {
@@ -39,8 +39,20 @@ public class OndaChi implements Habilidades {
         this.usos = usos;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public void usarHabilidad() {
-
+        if (this.usos>0)
+            this.usos--;
+        else {
+            this.usos=0;
+        }
     }
 }

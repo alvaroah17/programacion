@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Picaro implements Clase{
 
-    public Picaro (Estadistica estadisticas){
+    public Picaro (){
     }
 
 

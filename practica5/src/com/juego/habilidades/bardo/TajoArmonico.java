@@ -39,9 +39,20 @@ public class TajoArmonico implements Habilidades {
         this.usos = usos;
     }
 
-    @Override
-    public void usarHabilidad() {
+    public String getTipo() {
+        return tipo;
+    }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void usarHabilidad() {
+        if (this.usos>0)
+            this.usos--;
+        else {
+            this.usos=0;
+        }
     }
 
     @Override

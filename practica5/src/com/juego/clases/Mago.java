@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Mago implements Clase{
 
-    public Mago (Estadistica estadisticas){
+    public Mago (){
     }
 
 

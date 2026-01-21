@@ -5,13 +5,13 @@ import com.juego.habilidades.Habilidades;
 public class GolpePalma implements Habilidades {
     private String nombre;
     private String tipo;
-    private int daño;
+    private int cantidadDaño;
     private int usos;
 
     public GolpePalma(){
         this.nombre="Golpe de Palma";
         this.tipo="Daño";
-        this.daño=30;
+        this.cantidadDaño =30;
         this.usos=5;
     }
 
@@ -23,12 +23,12 @@ public class GolpePalma implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getCantidadDaño() {
+        return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setCantidadDaño(int daño) {
+        this.cantidadDaño = daño;
     }
 
     public int getUsos() {
@@ -39,8 +39,20 @@ public class GolpePalma implements Habilidades {
         this.usos = usos;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public void usarHabilidad() {
-
+        if (this.usos>0)
+            this.usos--;
+        else {
+            this.usos=0;
+        }
     }
 }

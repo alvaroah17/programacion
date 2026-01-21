@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Paladin implements Clase{
 
-    public Paladin (Estadistica estadisticas){
+    public Paladin (){
     }
 
 

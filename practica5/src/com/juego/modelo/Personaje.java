@@ -63,4 +63,18 @@ public class Personaje {
     public void setListaHabilidades(ArrayList<Habilidades> listaHabilidades) {
         this.listaHabilidades = listaHabilidades;
     }
+    public void recibeDaño (int cantidad){
+        this.estadisticas.setVida(this.estadisticas.getVida()-cantidad);
+    }
+    public void recibeCura (int cantidad){
+        if (this.estadisticas.getVida()==getEstadisticas().getVida()){
+            System.out.println("Vida al Maximo, no se puede curar");
+        } else if (this.estadisticas.getVida()+cantidad>=getEstadisticas().getVida()) {
+            this.estadisticas.setVida(getEstadisticas().getVida());
+        }
+        else {
+            this.estadisticas.setVida(this.estadisticas.getVida()+cantidad);
+        }
+    }
+ /// ARREGLAR MAÑANA
 }

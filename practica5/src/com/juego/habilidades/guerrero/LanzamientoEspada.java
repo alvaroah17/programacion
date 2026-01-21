@@ -23,11 +23,11 @@ public class LanzamientoEspada implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
+    public int getCantidadDaño() {
         return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
+    public void setCantidadDaño(int daño) {
         this.cantidadDaño = daño;
     }
 
@@ -39,8 +39,20 @@ public class LanzamientoEspada implements Habilidades {
         this.usos = usos;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public void usarHabilidad() {
-
+        if (this.usos>0)
+            this.usos--;
+        else {
+            this.usos=0;
+        }
     }
 }

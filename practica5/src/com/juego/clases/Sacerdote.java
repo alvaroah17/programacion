@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Sacerdote implements Clase{
 
-    public Sacerdote (Estadistica estadisticas){
+    public Sacerdote (){
     }
 
 

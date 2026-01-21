@@ -5,13 +5,13 @@ import com.juego.habilidades.Habilidades;
 public class CuracionMedia implements Habilidades {
     private String nombre;
     private String tipo;
-    private int cantidadCura;
+    private int cantidadDaño;
     private int usos;
 
     public CuracionMedia(){
         this.nombre="Pocion Curativa Mediana";
         this.tipo="Curacion";
-        this.cantidadCura =120;
+        this.cantidadDaño =120;
         this.usos=1;
     }
 
@@ -23,12 +23,12 @@ public class CuracionMedia implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
-        return cantidadCura;
+    public int getCantidadDaño() {
+        return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
-        this.cantidadCura = daño;
+    public void setCantidadDaño(int daño) {
+        this.cantidadDaño = daño;
     }
 
     public int getUsos() {
@@ -39,15 +39,28 @@ public class CuracionMedia implements Habilidades {
         this.usos = usos;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public void usarHabilidad() {
+        if (this.usos>0)
+            this.usos--;
+        else {
+            this.usos=0;
+        }
     }
 
     @Override
     public String toString() {
         return "CuracionMedia{" +
                 "nombre='" + nombre + '\'' +
-                ", curacion=" + cantidadCura +
+                ", curacion=" + cantidadDaño +
                 ", usos=" + usos +
                 '}';
     }

@@ -20,8 +20,8 @@ public class Bardo implements Clase{
     @Override
     public void agregarHabilidad(Personaje personaje) {
         ArrayList<Habilidades> listaHabilidades = personaje.getListaHabilidades();
-        listaHabilidades.add(new SinfoniaEstridente());
         listaHabilidades.add(new TajoArmonico());
+        listaHabilidades.add(new SinfoniaEstridente());
         listaHabilidades.add(new CuracionPequenia());
     }
 
