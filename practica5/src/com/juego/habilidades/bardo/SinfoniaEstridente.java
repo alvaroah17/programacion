@@ -4,12 +4,14 @@ import com.juego.habilidades.Habilidades;
 
 public class SinfoniaEstridente implements Habilidades {
     private String nombre;
-    private int daño;
+    private String tipo;
+    private int cantidadDaño;
     private int usos;
 
     public SinfoniaEstridente(){
         this.nombre="Sinfonia Estridente";
-        this.daño=95;
+        this.tipo="Daño";
+        this.cantidadDaño =95;
         this.usos=1;
     }
 
@@ -21,12 +23,12 @@ public class SinfoniaEstridente implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getCantidadDaño() {
+        return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setCantidadDaño(int cantidadDaño) {
+        this.cantidadDaño = cantidadDaño;
     }
 
     public int getUsos() {
@@ -46,7 +48,7 @@ public class SinfoniaEstridente implements Habilidades {
     public String toString() {
         return "SinfoniaEstridente{" +
                 "nombre='" + nombre + '\'' +
-                ", daño=" + daño +
+                ", daño=" + cantidadDaño +
                 ", usos=" + usos +
                 '}';
     }

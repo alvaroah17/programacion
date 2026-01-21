@@ -4,12 +4,14 @@ import com.juego.habilidades.Habilidades;
 
 public class CuracionGrande implements Habilidades {
     private String nombre;
-    private int cura;
+    private String tipo;
+    private int cantidadCura;
     private int usos;
 
     public CuracionGrande(){
         this.nombre="Pocion Curacion Grande";
-        this.cura=80;
+        this.tipo="Curacion";
+        this.cantidadCura =80;
         this.usos=3;
     }
 
@@ -22,11 +24,11 @@ public class CuracionGrande implements Habilidades {
     }
 
     public int getDaño() {
-        return cura;
+        return cantidadCura;
     }
 
     public void setDaño(int daño) {
-        this.cura = daño;
+        this.cantidadCura = daño;
     }
 
     public int getUsos() {
@@ -46,7 +48,7 @@ public class CuracionGrande implements Habilidades {
     public String toString() {
         return "CuracionGrande{" +
                 "nombre='" + nombre + '\'' +
-                ", cura=" + cura +
+                ", cura=" + cantidadCura +
                 ", usos=" + usos +
                 '}';
     }

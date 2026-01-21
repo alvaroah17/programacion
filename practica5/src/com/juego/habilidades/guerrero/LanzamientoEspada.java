@@ -4,12 +4,14 @@ import com.juego.habilidades.Habilidades;
 
 public class LanzamientoEspada implements Habilidades {
     private String nombre;
-    private int daño;
+    private String tipo;
+    private int cantidadDaño;
     private int usos;
 
     public LanzamientoEspada(){
         this.nombre="Lanzamiento de Espada";
-        this.daño=100;
+        this.tipo="Daño";
+        this.cantidadDaño=100;
         this.usos=1;
     }
 
@@ -22,11 +24,11 @@ public class LanzamientoEspada implements Habilidades {
     }
 
     public int getDaño() {
-        return daño;
+        return cantidadDaño;
     }
 
     public void setDaño(int daño) {
-        this.daño = daño;
+        this.cantidadDaño = daño;
     }
 
     public int getUsos() {

@@ -4,12 +4,14 @@ import com.juego.habilidades.Habilidades;
 
 public class TajoArmonico implements Habilidades {
     private String nombre;
-    private int daño;
+    private String tipo;
+    private int cantidadDaño;
     private int usos;
 
     public TajoArmonico(){
         this.nombre="Tajo Armonico";
-        this.daño=30;
+        this.tipo="Daño";
+        this.cantidadDaño =30;
         this.usos=5;
     }
 
@@ -21,12 +23,12 @@ public class TajoArmonico implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getCantidadDaño() {
+        return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setCantidadDaño(int cantidadDaño) {
+        this.cantidadDaño = cantidadDaño;
     }
 
     public int getUsos() {
@@ -46,7 +48,7 @@ public class TajoArmonico implements Habilidades {
     public String toString() {
         return "TajoArmonico{" +
                 "nombre='" + nombre + '\'' +
-                ", daño=" + daño +
+                ", daño=" + cantidadDaño +
                 ", usos=" + usos +
                 '}';
     }

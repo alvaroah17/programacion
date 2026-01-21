@@ -4,11 +4,13 @@ import com.juego.habilidades.Habilidades;
 
 public class CuracionPequenia implements Habilidades {
     private String nombre;
+    private String tipo;
     private int curacion;
     private int usos;
 
     public CuracionPequenia(){
         this.nombre="Pocion Curativa Pequeña";
+        this.tipo="Cura";
         this.curacion=30;
         this.usos=3;
     }
