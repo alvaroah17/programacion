@@ -4,11 +4,13 @@ import com.juego.habilidades.Habilidades;
 
 public class GolpePalma implements Habilidades {
     private String nombre;
+    private String tipo;
     private int daño;
     private int usos;
 
     public GolpePalma(){
         this.nombre="Golpe de Palma";
+        this.tipo="Daño";
         this.daño=30;
         this.usos=5;
     }

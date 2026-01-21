@@ -4,12 +4,14 @@ import com.juego.habilidades.Habilidades;
 
 public class JabalinaCrucificadora implements Habilidades {
     private String nombre;
-    private int daño;
+    private String tipo;
+    private int cantidadDaño;
     private int usos;
 
     public JabalinaCrucificadora(){
         this.nombre="Jabalina Crucificadora";
-        this.daño=100;
+        this.tipo="Daño";
+        this.cantidadDaño =100;
         this.usos=1;
     }
 
@@ -21,12 +23,12 @@ public class JabalinaCrucificadora implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getCantidadDaño() {
+        return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setCantidadDaño(int cantidadDaño) {
+        this.cantidadDaño = cantidadDaño;
     }
 
     public int getUsos() {

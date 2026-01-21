@@ -4,11 +4,13 @@ import com.juego.habilidades.Habilidades;
 
 public class OndaChi implements Habilidades {
     private String nombre;
+    private String tipo;
     private int daño;
     private int usos;
 
     public OndaChi(){
         this.nombre="Onda de Chi";
+        this.tipo="Daño";
         this.daño=110;
         this.usos=1;
     }

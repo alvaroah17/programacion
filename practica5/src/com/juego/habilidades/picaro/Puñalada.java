@@ -4,12 +4,14 @@ import com.juego.habilidades.Habilidades;
 
 public class Puñalada implements Habilidades {
     private String nombre;
-    private int daño;
+    private String tipo;
+    private int cantidadDaño;
     private int usos;
 
     public Puñalada(){
         this.nombre="Puñalada";
-        this.daño=40;
+        this.tipo="Daño";
+        this.cantidadDaño =40;
         this.usos=5;
     }
 
@@ -21,12 +23,12 @@ public class Puñalada implements Habilidades {
         this.nombre = nombre;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getCantidadDaño() {
+        return cantidadDaño;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setCantidadDaño(int cantidadDaño) {
+        this.cantidadDaño = cantidadDaño;
     }
 
     public int getUsos() {
