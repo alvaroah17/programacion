@@ -11,7 +11,7 @@ public class CuracionPequenia implements Habilidades {
     public CuracionPequenia(){
         this.nombre="Pocion Curativa Pequeña";
         this.tipo="Curacion";
-        this.cantidadDaño =30;
+        this.cantidadDaño=30;
         this.usos=3;
     }
 

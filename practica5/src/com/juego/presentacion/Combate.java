@@ -9,9 +9,6 @@ public class Combate {
 
     }
     public void iniciarCombate(Personaje jugador1, Personaje jugador2){
-        int vidaMaximaJ1 =jugador1.getEstadisticas().getVida();
-        int vidaMaximaJ2 =jugador2.getEstadisticas().getVida();
-        //----------------------------------------------------------------------------------------------------------
         /// MENSAJE DE INICIO DE COMBATE
         System.out.println("====================");
         System.out.println(" INICIO DEL COMBATE");
@@ -22,10 +19,10 @@ public class Combate {
             System.out.println("VIDA INICIAL DE LOS DOS JUGADORES ");
             System.out.println("--------------------------------------------------");
             System.out.println("JUGADOR 1");
-            System.out.println(jugador1.getNombre()+" "+jugador1.getEstadisticas().getVida()+"/"+ vidaMaximaJ1);
+            System.out.println(jugador1.getNombre()+" "+jugador1.getEstadisticas().getVida()+"/"+ jugador1.getEstadisticas().getVidaMaxima());
             System.out.println("--------------------------------------------------");
             System.out.println("JUGADOR 2");
-            System.out.println(jugador2.getNombre()+" "+jugador2.getEstadisticas().getVida()+"/"+ vidaMaximaJ2);
+            System.out.println(jugador2.getNombre()+" "+jugador2.getEstadisticas().getVida()+"/"+ jugador2.getEstadisticas().getVidaMaxima());
             System.out.println("--------------------------------------------------");
             //----------------------------------------------------------------------------------------------------------
             ///TURNO JUGADOR 1
@@ -37,10 +34,10 @@ public class Combate {
             // RECORRE ARRAYLIST HABILIDADES JUGADOR 1 Y IMPRIME LO QUE LE DIGAMOS
             for (int i = 0; i < jugador1.getListaHabilidades().size(); i++) {
                 if (jugador1.getListaHabilidades().get(i).getTipo().equals("Curacion")){
-                    System.out.println(i+") "+jugador1.getListaHabilidades().get(i).getNombre()+ " - "+jugador1.getListaHabilidades().get(i).getCantidadDaño()+" cura"+" - "+jugador1.getListaHabilidades().get(i).getUsos()+" usos");
+                    System.out.println(i+") "+jugador1.getListaHabilidades().get(i).getNombre()+ " - "+jugador1.getListaHabilidades().get(i).getCantidadDaño()+" cura"+" | "+jugador1.getListaHabilidades().get(i).getUsos()+" usos");
                 }
                 else if (jugador1.getListaHabilidades().get(i).getTipo().equals("Daño")){
-                    System.out.println(i+") "+jugador1.getListaHabilidades().get(i).getNombre()+ " - "+jugador1.getListaHabilidades().get(i).getCantidadDaño()+" daño"+" - "+jugador1.getListaHabilidades().get(i).getUsos()+" usos");
+                    System.out.println(i+") "+jugador1.getListaHabilidades().get(i).getNombre()+ " - "+jugador1.getListaHabilidades().get(i).getCantidadDaño()+" daño"+" | "+jugador1.getListaHabilidades().get(i).getUsos()+" usos");
                 }
             }
             //VARIABLE PARA COMPROBACION
@@ -72,7 +69,7 @@ public class Combate {
                         break;
                     case 2:
                         if (sePuedeUsar==true){
-                            jugador2.recibeCura(jugador1.getListaHabilidades().get(2).getCantidadDaño());
+                            jugador1.recibeCura(jugador1.getListaHabilidades().get(2).getCantidadDaño());
                         }
                         else {
                             System.out.println("NO te quedan movimientos, elige otro");
@@ -96,10 +93,10 @@ public class Combate {
             // RECORRE ARRAYLIST HABILIDADES JUGADOR 2 Y IMPRIME LO QUE LE DIGAMOS
             for (int i = 0; i < jugador2.getListaHabilidades().size(); i++) {
                 if (jugador2.getListaHabilidades().get(i).getTipo().equals("Curacion")){
-                    System.out.println(i+") "+jugador2.getListaHabilidades().get(i).getNombre()+ " - "+jugador2.getListaHabilidades().get(i).getCantidadDaño()+" cura"+" - "+jugador2.getListaHabilidades().get(i).getUsos()+" usos");
+                    System.out.println(i+") "+jugador2.getListaHabilidades().get(i).getNombre()+ " - "+jugador2.getListaHabilidades().get(i).getCantidadDaño()+" cura"+" | "+jugador2.getListaHabilidades().get(i).getUsos()+" usos");
                 }
                 else if (jugador2.getListaHabilidades().get(i).getTipo().equals("Daño")){
-                    System.out.println(i+") "+jugador2.getListaHabilidades().get(i).getNombre()+ " - "+jugador2.getListaHabilidades().get(i).getCantidadDaño()+" daño"+" - "+jugador2.getListaHabilidades().get(i).getUsos()+" usos");
+                    System.out.println(i+") "+jugador2.getListaHabilidades().get(i).getNombre()+ " - "+jugador2.getListaHabilidades().get(i).getCantidadDaño()+" daño"+" | "+jugador2.getListaHabilidades().get(i).getUsos()+" usos");
                 }
             }
             //----------------------------------------------------------------------------------------------------------
@@ -108,41 +105,42 @@ public class Combate {
                 //----------------------------------------------------------------------------------------------------------
                 ///ESCANER
                 Scanner sc = new Scanner(System.in);
+
+                // |1| Leemos la opción del jugador
                 int opcionElegidaJ2 = sc.nextInt();
-                sePuedeUsar=quedanUsos(jugador2,opcionElegidaJ2);
-                //RESTAMOS 1 USO DE LA HABILIDAD QUE ELIJAMOS LLAMANDO A LA FUNCION
-                jugador2.getListaHabilidades().get(opcionElegidaJ2).usarHabilidad();
-                //----------------------------------------------------------------------------------------------------------
-                switch (opcionElegidaJ2){
-                    case 0:
-                        if (sePuedeUsar==true){
-                            jugador1.recibeDaño(jugador2.getListaHabilidades().get(0).getCantidadDaño());
+
+                // |2| Comprobamos si la opción está dentro del rango de habilidades
+                if (opcionElegidaJ2 < 0 || opcionElegidaJ2 >= jugador2.getListaHabilidades().size()) {
+                    System.out.println("| Opción NO válida |");
+                    sePuedeUsar = false; // el bucle se repite
+                } else {
+                    // |3| Comprobamos si la habilidad tiene usos disponibles
+                    sePuedeUsar = quedanUsos(jugador2, opcionElegidaJ2);
+
+                    if (!sePuedeUsar) {
+                        // |4| Si no hay usos, avisamos y el bucle se repite
+                        System.out.println("NO te quedan movimientos, elige otro");
+                    } else {
+                        // |5| Si está correcto, restamos un uso
+                        jugador2.getListaHabilidades().get(opcionElegidaJ2).usarHabilidad();
+
+                        // |6| Ejecutamos la acción concreta según la habilidad
+                        switch (opcionElegidaJ2){
+                            case 0:
+                                jugador1.recibeDaño(jugador2.getListaHabilidades().get(0).getCantidadDaño());
+                                break;
+                            case 1:
+                                jugador1.recibeDaño(jugador2.getListaHabilidades().get(1).getCantidadDaño());
+                                break;
+                            case 2:
+                                jugador2.recibeCura(jugador2.getListaHabilidades().get(2).getCantidadDaño());
+                                break;
+                            // No necesitamos default porque el índice ya está validado
                         }
-                        else {
-                            System.out.println("NO te quedan movimientos, elige otro");
-                        }
-                        break;
-                    case 1:
-                        if (sePuedeUsar==true){
-                            jugador1.recibeDaño(jugador2.getListaHabilidades().get(1).getCantidadDaño());
-                        }
-                        else {
-                            System.out.println("NO te quedan movimientos, elige otro");
-                        }
-                        break;
-                    case 2:
-                        if (sePuedeUsar==true){
-                            jugador1.recibeCura(jugador2.getListaHabilidades().get(2).getCantidadDaño());
-                        }
-                        else {
-                            System.out.println("NO te quedan movimientos, elige otro");
-                        }
-                        break;
-                    default:
-                        System.out.println("| Opción NO válida | ");
+                    }
                 }
                 /// TERMINA TURNO JUGADOR 2
-            }while (sePuedeUsar==false);
+            } while (sePuedeUsar == false);
 
         }while (jugador1.getEstadisticas().getVida()>0 && jugador2.getEstadisticas().getVida()>0);
     }

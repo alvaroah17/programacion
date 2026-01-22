@@ -26,6 +26,7 @@ public class Paladin implements Clase{
     @Override
     public void aplicarBonificadores(Estadistica estadisticas) {
         estadisticas.setVida(estadisticas.getVida()+115);
+        estadisticas.setVidaMaxima(estadisticas.getVidaMaxima()+115);
         estadisticas.setFuerza(estadisticas.getFuerza()+2);
         estadisticas.setInteligencia(estadisticas.getInteligencia()+1);
     }

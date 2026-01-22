@@ -2,6 +2,7 @@ package com.juego.modelo;
 
 public class Estadistica {
     private int vida;
+    private int vidaMaxima;
     private int fuerza;
     private int destreza;
     private int inteligencia;
@@ -12,6 +13,10 @@ public class Estadistica {
     /// GETTERS
     public int getVida() {
         return vida;
+    }
+
+    public int getVidaMaxima() {
+        return vidaMaxima;
     }
 
     public int getFuerza() {
@@ -28,6 +33,10 @@ public class Estadistica {
     ///SETTERS
     public void setVida(int vida) {
         this.vida = vida;
+    }
+
+    public void setVidaMaxima(int vidaMaxima) {
+        this.vidaMaxima = vidaMaxima;
     }
 
     public void setFuerza(int fuerza) {

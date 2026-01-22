@@ -28,6 +28,7 @@ public class Bardo implements Clase{
     @Override
     public void aplicarBonificadores(Estadistica estadisticas) {
         estadisticas.setVida(estadisticas.getVida()+90);
+        estadisticas.setVidaMaxima(estadisticas.getVidaMaxima()+90);
         estadisticas.setInteligencia(estadisticas.getInteligencia()+3);
     }
 

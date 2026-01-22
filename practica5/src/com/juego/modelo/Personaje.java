@@ -67,14 +67,13 @@ public class Personaje {
         this.estadisticas.setVida(this.estadisticas.getVida()-cantidad);
     }
     public void recibeCura (int cantidad){
-        if (this.estadisticas.getVida()==getEstadisticas().getVida()){
-            System.out.println("Vida al Maximo, no se puede curar");
-        } else if (this.estadisticas.getVida()+cantidad>=getEstadisticas().getVida()) {
-            this.estadisticas.setVida(getEstadisticas().getVida());
-        }
-        else {
+
+       if (this.estadisticas.getVida()+cantidad>=this.estadisticas.getVidaMaxima()){
+           this.estadisticas.setVida(this.estadisticas.getVidaMaxima());
+       }
+       else if (this.estadisticas.getVida()+cantidad< estadisticas.getVidaMaxima()){
             this.estadisticas.setVida(this.estadisticas.getVida()+cantidad);
-        }
+       }
     }
  /// ARREGLAR MAÑANA
 }

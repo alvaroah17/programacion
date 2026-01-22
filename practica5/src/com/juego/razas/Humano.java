@@ -13,6 +13,7 @@ public class Humano implements Raza{
     @Override
     public void establecerEstadisticas(Estadistica estadisticas) {
         estadisticas.setVida(100);
+        estadisticas.setVidaMaxima(100);
         estadisticas.setFuerza(5);
         estadisticas.setDestreza(5);
         estadisticas.setInteligencia(5);
