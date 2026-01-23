@@ -18,7 +18,6 @@ public class Estadistica {
     public int getVidaMaxima() {
         return vidaMaxima;
     }
-
     public int getFuerza() {
         return fuerza;
     }

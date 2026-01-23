@@ -12,9 +12,13 @@ import java.util.ArrayList;
 
 public class Bardo implements Clase{
 
-
+    private String nombreClase;
     public Bardo(){
+        this.nombreClase="Bardo";
+    }
 
+    public String getNombreClase() {
+        return nombreClase;
     }
 
     @Override

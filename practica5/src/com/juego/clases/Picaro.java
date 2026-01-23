@@ -10,10 +10,14 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Picaro implements Clase{
-
+    private String nombreClase;
     public Picaro (){
+        this.nombreClase="Picaro";
     }
 
+    public String getNombreClase() {
+        return nombreClase;
+    }
 
     @Override
     public void agregarHabilidad(Personaje personaje) {
@@ -26,6 +30,7 @@ public class Picaro implements Clase{
     @Override
     public void aplicarBonificadores(Estadistica estadisticas) {
         estadisticas.setVida(estadisticas.getVida()+105);
+        estadisticas.setVidaMaxima(estadisticas.getVidaMaxima()+105);
         estadisticas.setDestreza(estadisticas.getDestreza()+3);
     }
 }

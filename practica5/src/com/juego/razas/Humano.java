@@ -5,9 +5,13 @@ import com.juego.modelo.Estadistica;
 public class Humano implements Raza{
 
     private Estadistica estadisticas;
-
+    private String nombreRaza;
     public Humano(){
+        this.nombreRaza="Humano";
+    }
 
+    public String getNombreRaza() {
+        return nombreRaza;
     }
 
     @Override

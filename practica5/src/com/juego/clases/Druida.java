@@ -10,11 +10,14 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Druida implements Clase{
-
+    private String nombreClase;
     public Druida (){
-
+    this.nombreClase="Druida";
     }
 
+    public String getNombreClase() {
+        return nombreClase;
+    }
 
     @Override
     public void agregarHabilidad(Personaje personaje) {
@@ -27,6 +30,7 @@ public class Druida implements Clase{
     @Override
     public void aplicarBonificadores(Estadistica estadisticas) {
         estadisticas.setVida(estadisticas.getVida()+100);
+        estadisticas.setVidaMaxima(estadisticas.getVidaMaxima()+100);
         estadisticas.setFuerza(estadisticas.getFuerza()+2);
         estadisticas.setInteligencia(estadisticas.getInteligencia()+1);
     }

@@ -10,10 +10,14 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Mago implements Clase{
-
+    private String nombreClase;
     public Mago (){
+        this.nombreClase="Mago";
     }
 
+    public String getNombreClase() {
+        return nombreClase;
+    }
 
     @Override
     public void agregarHabilidad(Personaje personaje) {
@@ -26,6 +30,7 @@ public class Mago implements Clase{
     @Override
     public void aplicarBonificadores(Estadistica estadisticas) {
         estadisticas.setVida(estadisticas.getVida()+90);
+        estadisticas.setVidaMaxima(estadisticas.getVidaMaxima()+90);
         estadisticas.setInteligencia(estadisticas.getInteligencia()+3);
     }
 }

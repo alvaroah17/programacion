@@ -10,10 +10,14 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Paladin implements Clase{
-
+    private String nombreClase;
     public Paladin (){
+        this.nombreClase="Paladín";
     }
 
+    public String getNombreClase() {
+        return nombreClase;
+    }
 
     @Override
     public void agregarHabilidad(Personaje personaje) {

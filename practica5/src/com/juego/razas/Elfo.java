@@ -4,8 +4,13 @@ import com.juego.modelo.Estadistica;
 
 public class Elfo implements Raza{
     private Estadistica estadisticas;
-
+    private String nombreRaza;
     public Elfo(){
+        this.nombreRaza="Elfo";
+    }
+
+    public String getNombreRaza() {
+        return nombreRaza;
     }
 
     @Override

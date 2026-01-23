@@ -10,12 +10,14 @@ import com.juego.modelo.Personaje;
 import java.util.ArrayList;
 
 public class Guerrero implements Clase{
-    Estadistica estadisticas;
-
+    private String nombreClase;
     public Guerrero (){
-
+        this.nombreClase="Guerrero";
     }
 
+    public String getNombreClase() {
+        return nombreClase;
+    }
 
     @Override
     public void agregarHabilidad(Personaje personaje) {
@@ -28,6 +30,7 @@ public class Guerrero implements Clase{
     @Override
     public void aplicarBonificadores(Estadistica estadisticas) {
         estadisticas.setVida(estadisticas.getVida()+120);
+        estadisticas.setVidaMaxima(estadisticas.getVidaMaxima()+120);
         estadisticas.setFuerza(estadisticas.getFuerza()+3);
     }
 }
