@@ -4,16 +4,28 @@ import com.juego.habilidades.Habilidades;
 import com.juego.modelo.Estadistica;
 import com.juego.modelo.Personaje;
 import com.juego.presentacion.Combate;
+import com.juego.presentacion.GestorPersonajes;
+import com.juego.presentacion.Presentacion;
 import com.juego.razas.Elfo;
 import com.juego.razas.Humano;
 
 public class Main {
    public static void main(String[] args) {
-       Personaje personaje1= new Personaje("Personaje 1", new Humano(),new Bardo(),new Estadistica());
-       Personaje personaje2= new Personaje("Personaje 2", new Elfo(),new Paladin(),new Estadistica());
+
+       Presentacion menu=new Presentacion();
+       menu.Menu();
+
+
+
+       /*GestorPersonajes gestorPersonajes= new GestorPersonajes();
+       gestorPersonajes.crearNuevoPersonaje();
+       System.out.println("PERSONAJES CREADOS");
+       for (int i = 0; i < gestorPersonajes.getPersonajes().size(); i++) {
+           System.out.println(gestorPersonajes.getPersonajes().get(i).getNombre());
+       }
+
        Combate combate1 = new Combate();
        combate1.iniciarCombate(personaje1, personaje2);
-
-
+       */
     }
 }

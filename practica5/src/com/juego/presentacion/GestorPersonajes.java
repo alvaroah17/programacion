@@ -16,32 +16,40 @@ public class GestorPersonajes {
 
     public GestorPersonajes() {
         this.personajes = new ArrayList<>();
-        personajes.add(PersonajePrueba1);
-        personajes.add(PersonajePrueba2);
+        this.personajes.add(PersonajePrueba1);
+        this.personajes.add(PersonajePrueba2);
+    }
+
+    public ArrayList<Personaje> getPersonajes() {
+        return personajes;
     }
 
     /// PERSONAJES CREADOS PREDEFINIDOS
     Personaje PersonajePrueba1 = new Personaje("PersonajePrueba1",new Enano(), new Sacerdote(), new Estadistica());
-    Personaje PersonajePrueba2= new Personaje("PersonajePrueba1",new Elfo(), new Guerrero(), new Estadistica());
+    Personaje PersonajePrueba2= new Personaje("PersonajePrueba2",new Elfo(), new Guerrero(), new Estadistica());
     ///FUNCION PARA CREAR PERSONAJE Y METERLO EN EL ARRAYLIST personajes
-    public void crearNuevoPersonaje(String nombre, Raza raza, Clase clase, Estadistica estadisticas){
+    public void crearNuevoPersonaje(){
+        System.out.println("=====================================");
+        System.out.println("=======|CREACIÓN DE PERSONAJE|=======");
+        System.out.println("=====================================");
         Scanner sc=new Scanner(System.in);
-        System.out.println("Introduce un nombre");
-        nombre=sc.nextLine();
-        System.out.println("Selecciona una raza");
+        System.out.printf("- Introduce un nombre para tu personaje :");
+        String nombre=sc.nextLine();
+        System.out.println("- Selecciona una raza -");
         System.out.println("1) Humano");
         System.out.println("2) Elfo");
         System.out.println("3) Enano");
         int opcionRaza= sc.nextInt();
+        Raza guardarRaza = null;
         switch (opcionRaza){
             case 1:
-                raza= new Humano();
+                guardarRaza= new Humano();
                 break;
             case 2:
-                raza=new Elfo();
+                guardarRaza=new Elfo();
                 break;
             case 3:
-                raza=new Enano();
+                guardarRaza=new Enano();
                 break;
         }
         System.out.println("Selecciona una Clase");
@@ -54,32 +62,39 @@ public class GestorPersonajes {
         System.out.println("7) Pícaro");
         System.out.println("8) Sacerdote");
         int opcionClase= sc.nextInt();
+        Clase guardarClase=null;
         switch (opcionClase){
             case 1:
-                clase=new Bardo();
+                guardarClase=new Bardo();
                 break;
             case 2:
-                clase=new Druida();
+                guardarClase=new Druida();
                 break;
             case 3:
-                clase=new Guerrero();
+                guardarClase=new Guerrero();
                 break;
             case 4:
-                clase=new Mago();
+                guardarClase=new Mago();
                 break;
             case 5:
-                clase=new Monje();
+                guardarClase=new Monje();
                 break;
             case 6:
-                clase=new Paladin();
+                guardarClase=new Paladin();
                 break;
             case 7:
-                clase=new Picaro();
+                guardarClase=new Picaro();
                 break;
             case 8:
-                clase=new Sacerdote();
+                guardarClase=new Sacerdote();
                 break;
         }
-        estadisticas=new Estadistica();
+        Estadistica estadisticas=new Estadistica();
+        Personaje personajeCreado= new Personaje(nombre,guardarRaza , guardarClase, estadisticas);
+        this.personajes.add(personajeCreado);
+        /// LLAMAMOS DE NUEVO A LA FUNCION MENÚ
+        Presentacion menu=new Presentacion();
+        menu.Menu();
+
     }
 }
