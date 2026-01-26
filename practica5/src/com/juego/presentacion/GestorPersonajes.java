@@ -16,17 +16,17 @@ public class GestorPersonajes {
 
     public GestorPersonajes() {
         this.personajes = new ArrayList<>();
-        this.personajes.add(PersonajePrueba1);
-        this.personajes.add(PersonajePrueba2);
+        this.personajes.add(Personaje1);
+        this.personajes.add(Personaje2);
     }
-
+    /// METODOS GET
     public ArrayList<Personaje> getPersonajes() {
         return personajes;
     }
 
     /// PERSONAJES CREADOS PREDEFINIDOS
-    Personaje PersonajePrueba1 = new Personaje("PersonajePrueba1",new Enano(), new Sacerdote(), new Estadistica());
-    Personaje PersonajePrueba2= new Personaje("PersonajePrueba2",new Elfo(), new Guerrero(), new Estadistica());
+    Personaje Personaje1 = new Personaje("Sergio Mondrigón",new Enano(), new Sacerdote(), new Estadistica());
+    Personaje Personaje2= new Personaje("Marco Palomo",new Elfo(), new Guerrero(), new Estadistica());
     ///FUNCION PARA CREAR PERSONAJE Y METERLO EN EL ARRAYLIST personajes
     public void crearNuevoPersonaje(){
         System.out.println("=====================================");
@@ -51,6 +51,9 @@ public class GestorPersonajes {
             case 3:
                 guardarRaza=new Enano();
                 break;
+            default:
+                System.out.println("Al haber seleccionado una raza que no está se le ha asignado la Raza Enano");
+                guardarRaza=new Enano();
         }
         System.out.println("Selecciona una Clase");
         System.out.println("1) Bardo");
@@ -88,13 +91,12 @@ public class GestorPersonajes {
             case 8:
                 guardarClase=new Sacerdote();
                 break;
+            default:
+                System.out.println("Al haber seleccionado una Clase que no está se le ha asignado la Clase Sacerdote");
+                guardarClase=new Sacerdote();
         }
         Estadistica estadisticas=new Estadistica();
         Personaje personajeCreado= new Personaje(nombre,guardarRaza , guardarClase, estadisticas);
         this.personajes.add(personajeCreado);
-        /// LLAMAMOS DE NUEVO A LA FUNCION MENÚ
-        Presentacion menu=new Presentacion();
-        menu.Menu();
-
     }
 }

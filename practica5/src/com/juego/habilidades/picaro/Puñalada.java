@@ -11,7 +11,7 @@ public class Puñalada implements Habilidades {
     public Puñalada(){
         this.nombre="Puñalada";
         this.tipo="Daño";
-        this.cantidadDaño =40;
+        this.cantidadDaño =45;
         this.usos=5;
     }
 

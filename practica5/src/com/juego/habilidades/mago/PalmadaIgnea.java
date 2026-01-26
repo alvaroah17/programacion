@@ -11,7 +11,7 @@ public class PalmadaIgnea implements Habilidades {
     public PalmadaIgnea(){
         this.nombre="Palmada Ignea";
         this.tipo="Daño";
-        this.cantidadDaño =30;
+        this.cantidadDaño =45;
         this.usos=5;
     }
 

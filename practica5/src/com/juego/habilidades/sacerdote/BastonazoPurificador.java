@@ -11,7 +11,7 @@ public class BastonazoPurificador implements Habilidades {
     public BastonazoPurificador(){
         this.nombre="Bastonazo Purificador";
         this.tipo="Daño";
-        this.cantidadDaño =35;
+        this.cantidadDaño =40;
         this.usos=5;
     }
 

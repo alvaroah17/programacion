@@ -11,7 +11,7 @@ public class Espadazo implements Habilidades {
     public Espadazo(){
         this.nombre="Espadazo";
         this.tipo="Daño";
-        this.cantidadDaño =45;
+        this.cantidadDaño =50;
         this.usos=5;
     }
 

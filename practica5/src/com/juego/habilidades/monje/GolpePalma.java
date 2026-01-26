@@ -11,7 +11,7 @@ public class GolpePalma implements Habilidades {
     public GolpePalma(){
         this.nombre="Golpe de Palma";
         this.tipo="Daño";
-        this.cantidadDaño =30;
+        this.cantidadDaño =40;
         this.usos=5;
     }
 

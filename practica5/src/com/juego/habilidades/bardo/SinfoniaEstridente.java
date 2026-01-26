@@ -1,5 +1,6 @@
 package com.juego.habilidades.bardo;
 
+import com.juego.clases.Clase;
 import com.juego.habilidades.Habilidades;
 
 public class SinfoniaEstridente implements Habilidades {

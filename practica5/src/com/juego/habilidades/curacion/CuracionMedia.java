@@ -11,7 +11,7 @@ public class CuracionMedia implements Habilidades {
     public CuracionMedia(){
         this.nombre="Pocion Curativa Mediana";
         this.tipo="Curacion";
-        this.cantidadDaño =120;
+        this.cantidadDaño =45;
         this.usos=1;
     }
 

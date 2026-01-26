@@ -141,6 +141,17 @@ public class Combate {
             } while (sePuedeUsar == false);
 
         }while (jugador1.getEstadisticas().getVida()>0 && jugador2.getEstadisticas().getVida()>0);
+        if (jugador1.getEstadisticas().getVida()<=0){
+            System.out.println("EL JUGADOR 1 HA MUERTO");
+            System.out.println("¡¡FELICIDADES!! JUGADOR 2");
+        }
+        else {
+            System.out.println("____________________________");
+            System.out.println("|  EL JUGADOR 2 HA MUERTO  |");
+            System.out.println("|__________________________|");
+            System.out.println("| ¡¡FELICIDADES!! JUGADOR 1|");
+            System.out.println("|__________________________|");
+        }
     }
     public boolean quedanUsos (Personaje personaje, int eleccion){
         if(personaje.getListaHabilidades().get(eleccion).getUsos()<=0){
@@ -148,4 +159,5 @@ public class Combate {
         }
         return true;
     };
+
 }

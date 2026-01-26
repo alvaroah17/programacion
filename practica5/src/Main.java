@@ -10,14 +10,12 @@ import com.juego.razas.Elfo;
 import com.juego.razas.Humano;
 
 public class Main {
-   public static void main(String[] args) {
+    public static void main(String[] args) {
 
-       Presentacion menu=new Presentacion();
-       menu.Menu();
+        Presentacion menu=new Presentacion();
+        menu.Menu();
 
-
-
-       /*GestorPersonajes gestorPersonajes= new GestorPersonajes();
+      /*GestorPersonajes gestorPersonajes= new GestorPersonajes();
        gestorPersonajes.crearNuevoPersonaje();
        System.out.println("PERSONAJES CREADOS");
        for (int i = 0; i < gestorPersonajes.getPersonajes().size(); i++) {

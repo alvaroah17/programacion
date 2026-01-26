@@ -11,7 +11,7 @@ public class Tomahawk implements Habilidades {
     public Tomahawk(){
         this.nombre="Tomahawk";
         this.tipo="Daño";
-        this.cantidadDaño =100;
+        this.cantidadDaño =130;
         this.usos=1;
     }
 
