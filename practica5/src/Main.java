@@ -1,18 +1,9 @@
-import com.juego.clases.Bardo;
-import com.juego.clases.Paladin;
-import com.juego.habilidades.Habilidades;
-import com.juego.modelo.Estadistica;
-import com.juego.modelo.Personaje;
-import com.juego.presentacion.Combate;
-import com.juego.presentacion.GestorPersonajes;
-import com.juego.presentacion.Presentacion;
-import com.juego.razas.Elfo;
-import com.juego.razas.Humano;
+import com.juego.presentacion.Menu;
 
 public class Main {
     public static void main(String[] args) {
 
-        Presentacion menu=new Presentacion();
+        Menu menu=new Menu();
         menu.Menu();
 
       /*GestorPersonajes gestorPersonajes= new GestorPersonajes();

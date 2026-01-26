@@ -10,22 +10,22 @@ public class Combate {
     }
     public void iniciarCombate(Personaje jugador1, Personaje jugador2){
         /// MENSAJE DE INICIO DE COMBATE
-        System.out.println("====================");
-        System.out.println(" INICIO DEL COMBATE");
-        System.out.println("====================");
+        System.out.println("========================");
+        System.out.println(" | INICIO DEL COMBATE |");
+        System.out.println("========================");
         //----------------------------------------------------------------------------------------------------------
         do {
             /// MOSTRAR VIDA DE LOS 2 JUGADORES
             System.out.println("VIDA INICIAL DE LOS DOS JUGADORES ");
-            System.out.println("--------------------------------------------------");
+            System.out.println("================================================");
             System.out.println("JUGADOR 1");
             System.out.println("Eres un "+jugador1.getRaza().getNombreRaza()+"-"+jugador1.getClase().getNombreClase());
             System.out.println(jugador1.getNombre()+" "+jugador1.getEstadisticas().getVida()+"/"+ jugador1.getEstadisticas().getVidaMaxima()+"HP");
-            System.out.println("--------------------------------------------------");
+            System.out.println("-------------------------------------------------|");
             System.out.println("JUGADOR 2");
             System.out.println("Eres un "+jugador2.getRaza().getNombreRaza()+"-"+jugador2.getClase().getNombreClase());
             System.out.println(jugador2.getNombre()+" "+jugador2.getEstadisticas().getVida()+"/"+ jugador2.getEstadisticas().getVidaMaxima()+"HP");
-            System.out.println("--------------------------------------------------");
+            System.out.println("-------------------------------------------------|");
             //----------------------------------------------------------------------------------------------------------
             ///VARIABLE PARA COMPROBACION EN AMBOS TURNOS
             boolean sePuedeUsar;

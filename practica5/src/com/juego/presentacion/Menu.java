@@ -4,7 +4,7 @@ import com.juego.modelo.Personaje;
 
 import java.util.Scanner;
 
-public class Presentacion {
+public class Menu {
     public void Menu(){
         GestorPersonajes gestorPersonajes=new GestorPersonajes();
         int opcionMenu=0;
@@ -22,12 +22,12 @@ public class Presentacion {
                 case 1:
                     /// LISTA DE PERSONAJES CREADOS
                     System.out.println("|=======================================================|");
-                    System.out.println("| Elige los Personajes para jugar entre los disponibles |");
+                    System.out.println("| ELIGE LOS PERSONAJES PARA JUGAR ENTRE LOS DISPONIBLES |");
                     System.out.println("|=======================================================|");
 
                     for (int i = 0; i < gestorPersonajes.getPersonajes().size(); i++) {
-                        System.out.println("|"+(i+1)+") "+gestorPersonajes.getPersonajes().get(i).getNombre()+" es un "+gestorPersonajes.getPersonajes().get(i).getRaza().getNombreRaza()+"-"+gestorPersonajes.getPersonajes().get(i).getClase().getNombreClase());
-                        System.out.println("|--------------------------------------------------------");
+                        System.out.printf("| %-53s |%n","|"+(i+1)+") "+gestorPersonajes.getPersonajes().get(i).getNombre()+" es un "+gestorPersonajes.getPersonajes().get(i).getRaza().getNombreRaza()+"-"+gestorPersonajes.getPersonajes().get(i).getClase().getNombreClase());
+                        System.out.println("|-------------------------------------------------------|");
                     }
                     /// ELIGE JUGADOR 1
                     System.out.println("=====================");
@@ -52,6 +52,7 @@ public class Presentacion {
                     System.out.println("=====================");
                     Personaje eleccionPersonaje2=null;
                     do {
+                        System.out.printf("Nº de personaje : ");
                         int numeroEleccionPersonaje = sc.nextInt();
                         if (numeroEleccionPersonaje>=1 && numeroEleccionPersonaje<=gestorPersonajes.getPersonajes().size()){
                             eleccionPersonaje2=gestorPersonajes.getPersonajes().get(numeroEleccionPersonaje-1);
