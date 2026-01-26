@@ -75,5 +75,4 @@ public class Personaje {
             this.estadisticas.setVida(this.estadisticas.getVida()+cantidad);
        }
     }
- /// ARREGLAR MAÑANA
 }
