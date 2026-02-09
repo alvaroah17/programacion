@@ -39,26 +39,16 @@ public class Bloque1 {
         this.hechizosMana.put("Ritual del Vacío",60.00 );
         this.hechizosMana.put("Tempestad Celestial",65.00 );
     }
-    public void mostrar3erEvento1 (){
-        System.out.println("ESTE ES EL 3er EVENTO = "+this.registroCombate.get(2));
-    }
 
-    public void mostrarNombreVillanos2 (){
-        System.out.println("NOMBRE DE VILLANOS = "+this.nombreVillanos.size());
-    }
-
-    public void mostrarOroAventurero (String nombreAventurero){
-        System.out.println("Oro del aventurero/a: " + nombreAventurero+ " : "+this.aventurero.get(nombreAventurero));
-    }
     ///4.Limpieza del Calabozo
-    public void eliminarEventoMasAntiguoYañadirDragonAvistado (){
+    public void eliminarEventoMasAntiguoYaniaadirDragonAvistado (){
         this.registroCombate.removeFirst();
         this.registroCombate.add("Dragón avistado");
     }
     ///5.Mercado de hechizos
     public void mostrarHechizosManaMayores50(){
         for (String Hechizo: hechizosMana.keySet()){
-            if (hechizosMana.get(Hechizo)>50){
+            if (hechizosMana.get(Hechizo)>50.0){
                 System.out.println(Hechizo+" cuesta "+hechizosMana.get(Hechizo)+" de Mana");
             }
         }
@@ -66,5 +56,19 @@ public class Bloque1 {
     ///6. Expulsión del Reino
     public void verificarHashSetVillanos (){
         this.nombreVillanos.removeIf(villano->villano.equals("Sauron"));
+    }
+
+    /// -----------------------------------------FUNCIONES-------------------------------------------------------
+    /// FUNCION EJ.1
+    public void mostrar3erEvento1 (){
+        System.out.println("ESTE ES EL 3er EVENTO = "+this.registroCombate.get(2));
+    }
+    /// FUNCION EJ.2
+    public void mostrarNombreVillanos2 (){
+        System.out.println("NOMBRE DE VILLANOS = "+this.nombreVillanos.size());
+    }
+    /// FUNCION EJ.3
+    public void mostrarOroAventurero (String nombreAventurero){
+        System.out.println("Oro del aventurero/a: " + nombreAventurero+ " : "+this.aventurero.get(nombreAventurero));
     }
 }
