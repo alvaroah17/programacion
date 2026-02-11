@@ -7,6 +7,7 @@ public class Bloque2 {
     /// |----------------------------|
     /// | DESAFIOS DE LÓGICA ANIDADA |
     /// |----------------------------|
+    /// ATRIBUTOS
     //EJERCICIO 7---------------------------------------------
     private ArrayList<String> miembrosGremio1;
     private ArrayList<String> miembrosGremio2;
