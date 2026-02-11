@@ -29,7 +29,6 @@ public class Bloque2 {
         this.miembrosGremio2.add("Bardo2");
         this.miembrosGremio2.add("Bardo3");
         this.gremioMiembros.put("Bardos",miembrosGremio2 );
-
         /// 8. El Sistema de Loot (Botín)
         this.mounstroConObjetos=new HashMap<>();
         this.objetosMounstro=new HashSet<>();
@@ -43,7 +42,7 @@ public class Bloque2 {
         this.jugadorYsusEstadisticas.put("Conan", estadisticasBaseJugador());
         this.jugadorYsusEstadisticas.get("Conan").put("Fuerza", this.jugadorYsusEstadisticas.get("Conan").get("Fuerza")+2);
         /// 10. El Buscador de Traidores
-
+        this.miembrosGremio2.add("Judas");
     }
     /// FUNCION EJ.7
     public void mostrarMiembrosGremio(){
@@ -53,7 +52,7 @@ public class Bloque2 {
     public void mostrarObjetosMounstrosNoRepetidos(){
         System.out.println(this.mounstroConObjetos);
     }
-    /// -----------------------------------------FUNCIONES-------------------------------------------------------
+    /// --------------------------------------------FUNCIONES-------------------------------------------------------
     /// FUNCION EJ.9
     public HashMap<String, Integer> estadisticasBaseJugador(){
         HashMap<String, Integer> estadisticasBase=new HashMap<>();
@@ -64,6 +63,15 @@ public class Bloque2 {
     public void mostrarEstadisticasJugador(){
         System.out.println(jugadorYsusEstadisticas);
     }
-    public void recorrerArraylistGremios(){
+    /// FUNCION EJ.10
+    public void recorrerArraylistGremiosYeliminarJudas(){
+        for (Map.Entry<String, ArrayList<String>> judas:gremioMiembros.entrySet()){
+            if (judas.getValue().contains("Judas")){
+                judas.getValue().remove("Judas");
+                System.out.println("Se ha eliminado a judas del gremio = "+ judas.getKey());
+                return;
+            }
+        }
+        System.out.println("Judas no esta en ningun gremio");
     }
 }
