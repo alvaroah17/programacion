@@ -29,6 +29,7 @@ public class Bloque2 {
         this.miembrosGremio2.add("Bardo2");
         this.miembrosGremio2.add("Bardo3");
         this.gremioMiembros.put("Bardos",miembrosGremio2 );
+
         /// 8. El Sistema de Loot (Botín)
         this.mounstroConObjetos=new HashMap<>();
         this.objetosMounstro=new HashSet<>();
@@ -41,7 +42,16 @@ public class Bloque2 {
         this.jugadorYsusEstadisticas=new HashMap<>();
         this.jugadorYsusEstadisticas.put("Conan", estadisticasBaseJugador());
         this.jugadorYsusEstadisticas.get("Conan").put("Fuerza", this.jugadorYsusEstadisticas.get("Conan").get("Fuerza")+2);
+        /// 10. El Buscador de Traidores
 
+    }
+    /// FUNCION EJ.7
+    public void mostrarMiembrosGremio(){
+        System.out.println(this.gremioMiembros.get("Magos"));
+    }
+    /// FUNCION EJ.8
+    public void mostrarObjetosMounstrosNoRepetidos(){
+        System.out.println(this.mounstroConObjetos);
     }
     /// -----------------------------------------FUNCIONES-------------------------------------------------------
     /// FUNCION EJ.9
@@ -54,13 +64,6 @@ public class Bloque2 {
     public void mostrarEstadisticasJugador(){
         System.out.println(jugadorYsusEstadisticas);
     }
-    /// FUNCION EJ.7
-    public void mostrarMiembrosGremio(){
-        System.out.println(this.gremioMiembros.get("Magos"));
+    public void recorrerArraylistGremios(){
     }
-    /// FUNCION EJ.8
-    public void mostrarObjetosMounstrosNoRepetidos(){
-        System.out.println(this.mounstroConObjetos);
-    }
-
 }
