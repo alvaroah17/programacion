@@ -3,4 +3,8 @@ public class Podcast extends Obra{
         super( nombreObra,idObra, duracionMinutos);
     }
 
+    @Override
+    boolean esMonetizable() {
+        return false;
+    }
 }
