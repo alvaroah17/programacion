@@ -1,0 +1,6 @@
+Rivendel;12000;Templado;2
+Rohan;18000;Ventoso;6
+Gondor;25000;Soleado;4
+Moria;3000;Oscuro;9
+Lothlorien;9000;Húmedo;1
+Bree;4000;Lluvioso;5
