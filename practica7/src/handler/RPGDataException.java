@@ -1,4 +1,5 @@
 package handler;
 
-public class RPGDataException {
+public class RPGDataException extends Exception{
+
 }

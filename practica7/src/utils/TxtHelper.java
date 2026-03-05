@@ -18,7 +18,6 @@ public class TxtHelper {
                 String [] s =linea.split(";");
                 Ciudades ciudades2=new Ciudades(s[0], Integer.parseInt(s[1]), s[2],Integer.parseInt(s[3]));
                 ciudades.add(ciudades2);
-
             }
         } catch (IOException e) {
             System.out.println("No se ha podido abrir el fichero.");
