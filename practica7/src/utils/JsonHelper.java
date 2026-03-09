@@ -24,4 +24,5 @@ public class JsonHelper {
         }
         return listaPersonajes;
     }
+    //HACER LO MISMO PARA LOS ITEMS
 }
