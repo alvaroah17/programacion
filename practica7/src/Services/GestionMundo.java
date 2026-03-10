@@ -10,20 +10,25 @@ import model.Personajes;
 import utils.JsonHelper;
 import utils.TxtHelper;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class GestionMundo {
-    ArrayList<Personajes> listaPersonajes;
-    ArrayList<Items> listaItems;
-    ArrayList<Ciudades> listaCiudades;
+    private ArrayList<Personajes> listaPersonajes;
+    private ArrayList<Items> listaItems;
+    private ArrayList<Ciudades> listaCiudades;
+    private HashMap<String, Items> mapItems;
 
     public GestionMundo() throws FormatoInvalidoException {
         this.listaCiudades = new ArrayList<>();
         this.listaPersonajes = new ArrayList<>();
         this.listaItems = new ArrayList<>();
+        this.mapItems=new HashMap<>();
         cargarTodo();
+
+    }
+
+    public ArrayList<Items> getListaItems() {
+        return listaItems;
     }
 
     public void cargarTodo() throws FormatoInvalidoException {
@@ -33,9 +38,42 @@ public class GestionMundo {
         JsonHelper lectorJSON=new JsonHelper();
         this.listaPersonajes=lectorJSON.leerJsonPersonajes();
         this.listaItems=lectorJSON.leerJsonItems();
+
+        for(Items itemAbuscar : listaItems){
+            this.mapItems.put(itemAbuscar.getId(), itemAbuscar);
+        }
     }
 
-    public void crearPersonaje() throws RPGDataException {
+    public void crearPersonajeBueno(String nombre, String raza, int nivel, ArrayList<String> idsItems) throws RPGDataException {
+        for (String idObjeto: idsItems){
+            if (!mapItems.containsKey(idObjeto)){
+                throw new DatoInvalidoException("ERROR: El idItem que buscas no existe");
+            }
+        }
+        Personajes personajes=new Personajes(nombre, raza, nivel,idsItems);
+
+
+
+
+
+
+
+
+
+
+        try{
+            for (String idObjeto: idsItems){
+                if (mapItems.containsKey(idObjeto)){
+
+                }
+            }
+
+        }catch (Exception e){
+            throw new DatoInvalidoException("ERROR: Dato invalido"+e.getMessage());
+        }
+    }
+
+   /* public void crearPersonaje() throws RPGDataException {
        // cargarTodo();
 
         Scanner sc=new Scanner(System.in);
@@ -85,7 +123,7 @@ public class GestionMundo {
         personajeNuevo.getEquipoIds().add(listaItems.get(eleccionEquipo).getId());
         System.out.println("Has elegido el equipo : "+personajeNuevo.getEquipoIds());
         listaPersonajes.add(personajeNuevo);
-    }
+    }*/
     public void guardarCambios(){
 
     }

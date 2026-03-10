@@ -9,12 +9,11 @@ public class Personajes {
     private int nivel;
     private ArrayList<String> equipoIds;
 
-    public Personajes(String nombre, String raza, int nivel) {
+    public Personajes(String nombre, String raza, int nivel, ArrayList<String> equipoIds) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
-        this.equipoIds = new ArrayList<>();
-
+        this.equipoIds = equipoIds;
     }
 
     public String getNombre() {
