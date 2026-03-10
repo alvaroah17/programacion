@@ -19,14 +19,14 @@ public class GestionMundo {
     ArrayList<Items> listaItems;
     ArrayList<Ciudades> listaCiudades;
 
-    public GestionMundo() {
+    public GestionMundo() throws FormatoInvalidoException {
         this.listaCiudades = new ArrayList<>();
         this.listaPersonajes = new ArrayList<>();
         this.listaItems = new ArrayList<>();
         cargarTodo();
     }
 
-    public void cargarTodo(){
+    public void cargarTodo() throws FormatoInvalidoException {
         TxtHelper lectorTXT = new TxtHelper();
         this.listaCiudades=lectorTXT.leerCiudades();
 
