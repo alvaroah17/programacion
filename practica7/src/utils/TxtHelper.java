@@ -9,18 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TxtHelper {
-    public List<Ciudades> leerCiudades() {
-        List<Ciudades> ciudades=new ArrayList<>();
+    public ArrayList<Ciudades> leerCiudades() {
+        ArrayList<Ciudades> ciudades=new ArrayList<>();
         try {
             List<String> lineas = Files.readAllLines(Paths.get("practica7\\Ficheros\\ciudades.txt"));
             for (String linea : lineas) {
-                System.out.println(linea);
+                //System.out.println(linea);
                 String [] s =linea.split(";");
                 Ciudades ciudades2=new Ciudades(s[0], Integer.parseInt(s[1]), s[2],Integer.parseInt(s[3]));
                 ciudades.add(ciudades2);
             }
-        } catch (IOException e) {
-            System.out.println("No se ha podido abrir el fichero.");
+        } catch (Exception e) {
+            System.out.println("Error al procesar el fichero."+e.getMessage());
         }
         return ciudades;
     }

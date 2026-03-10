@@ -3,6 +3,12 @@
     "nombre": "Aragorn",
     "raza": "Humano",
     "nivel": 20,
-    "equipoIds": ["E01"]
+    "equipoIds": ["W01"]
+  },
+  {
+    "nombre": "Legolas",
+    "raza": "Elfo",
+    "nivel": 25,
+    "equipoIds": ["K01"]
   }
 ]
