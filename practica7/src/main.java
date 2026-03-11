@@ -6,15 +6,12 @@ import utils.JsonHelper;
 import utils.TxtHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class main {
     public static void main(String[] args) throws RPGDataException {
         GestionMundo gestionMundo=new GestionMundo();
-        gestionMundo.cargarTodo();
-        ArrayList<String> idObjetos=new ArrayList<>();
-        idObjetos.add("K01");
-
-        gestionMundo.crearPersonajeBueno("Pepe", "Elfo",20,idObjetos);
+        gestionMundo.crearPersonajeBueno("Pepe", "Elfo",20,gestionMundo.item("Kf01"));
         
 
     }

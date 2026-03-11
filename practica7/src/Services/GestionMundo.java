@@ -8,8 +8,9 @@ import model.Ciudades;
 import model.Items;
 import model.Personajes;
 import utils.JsonHelper;
+import utils.LoggerCustom;
 import utils.TxtHelper;
-
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class GestionMundo {
@@ -17,12 +18,14 @@ public class GestionMundo {
     private ArrayList<Items> listaItems;
     private ArrayList<Ciudades> listaCiudades;
     private HashMap<String, Items> mapItems;
+    private LoggerCustom loggerCustom ;
 
     public GestionMundo() throws FormatoInvalidoException {
         this.listaCiudades = new ArrayList<>();
         this.listaPersonajes = new ArrayList<>();
         this.listaItems = new ArrayList<>();
         this.mapItems=new HashMap<>();
+        this.loggerCustom=new LoggerCustom();
         cargarTodo();
 
     }
@@ -45,34 +48,20 @@ public class GestionMundo {
     }
 
     public void crearPersonajeBueno(String nombre, String raza, int nivel, ArrayList<String> idsItems) throws RPGDataException {
+
         for (String idObjeto: idsItems){
             if (!mapItems.containsKey(idObjeto)){
-                throw new DatoInvalidoException("ERROR: El idItem que buscas no existe");
+                loggerCustom.escribirLog("ERROR: El idItem que buscas no existe ");
+                throw new DatoInvalidoException("ERROR: El idItem que buscas no existe ");
             }
         }
-        Personajes personajes=new Personajes(nombre, raza, nivel,idsItems);
-
-
-
-
-
-
-
-
-
-
-        try{
-            for (String idObjeto: idsItems){
-                if (mapItems.containsKey(idObjeto)){
-
-                }
-            }
-
-        }catch (Exception e){
-            throw new DatoInvalidoException("ERROR: Dato invalido"+e.getMessage());
-        }
+        Personajes personajeNuevo=new Personajes(nombre, raza, nivel,idsItems);
+        listaPersonajes.add(personajeNuevo);
     }
-
+public ArrayList<String> item(String idItem){
+        ArrayList<String> itemPersonaje=new ArrayList<>(List.of(idItem));
+        return itemPersonaje;
+}
    /* public void crearPersonaje() throws RPGDataException {
        // cargarTodo();
 
