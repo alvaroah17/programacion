@@ -10,7 +10,6 @@ import model.Personajes;
 import utils.JsonHelper;
 import utils.LoggerCustom;
 import utils.TxtHelper;
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class GestionMundo {
@@ -18,51 +17,62 @@ public class GestionMundo {
     private ArrayList<Items> listaItems;
     private ArrayList<Ciudades> listaCiudades;
     private HashMap<String, Items> mapItems;
-    private LoggerCustom loggerCustom ;
+    private LoggerCustom loggerCustom;
+    private JsonHelper jsonHelper;
 
-    public GestionMundo() throws FormatoInvalidoException {
+    public GestionMundo() throws RPGDataException {
         this.listaCiudades = new ArrayList<>();
         this.listaPersonajes = new ArrayList<>();
         this.listaItems = new ArrayList<>();
         this.mapItems=new HashMap<>();
         this.loggerCustom=new LoggerCustom();
+        this.jsonHelper=new JsonHelper();
         cargarTodo();
-
     }
 
-    public ArrayList<Items> getListaItems() {
-        return listaItems;
-    }
 
     public void cargarTodo() throws FormatoInvalidoException {
         TxtHelper lectorTXT = new TxtHelper();
         this.listaCiudades=lectorTXT.leerCiudades();
 
-        JsonHelper lectorJSON=new JsonHelper();
-        this.listaPersonajes=lectorJSON.leerJsonPersonajes();
-        this.listaItems=lectorJSON.leerJsonItems();
+        this.listaPersonajes=jsonHelper.leerJsonPersonajes();
+        this.listaItems=jsonHelper.leerJsonItems();
 
         for(Items itemAbuscar : listaItems){
             this.mapItems.put(itemAbuscar.getId(), itemAbuscar);
         }
     }
 
-    public void crearPersonajeBueno(String nombre, String raza, int nivel, ArrayList<String> idsItems) throws RPGDataException {
+    public void crearPersonaje(String nombre, String raza, int nivel, ArrayList<String> idsItems) throws RPGDataException {
 
         for (String idObjeto: idsItems){
             if (!mapItems.containsKey(idObjeto)){
                 loggerCustom.escribirLog("ERROR: El idItem que buscas no existe ");
-                throw new DatoInvalidoException("ERROR: El idItem que buscas no existe ");
+                throw new RecursoNoEncontradoException("ERROR: El idItem que buscas no existe ");
             }
+        }
+        if (nivel<0){
+            loggerCustom.escribirLog("ERROR: El nivel no puede ser inferior a 0");
+            throw new DatoInvalidoException("ERROR: El nivel no puede ser inferior a 0");
+        } else if (nivel>100) {
+            loggerCustom.escribirLog("ERROR: El nivel no puede ser superior a 100");
+            throw new DatoInvalidoException("ERROR: El nivel no puede ser superior a 100");
         }
         Personajes personajeNuevo=new Personajes(nombre, raza, nivel,idsItems);
         listaPersonajes.add(personajeNuevo);
+        guardarCambios(listaPersonajes);
     }
-public ArrayList<String> item(String idItem){
-        ArrayList<String> itemPersonaje=new ArrayList<>(List.of(idItem));
-        return itemPersonaje;
-}
-   /* public void crearPersonaje() throws RPGDataException {
+
+    public ArrayList<String> item(String idItem){
+            ArrayList<String> itemPersonaje=new ArrayList<>(List.of(idItem));
+            return itemPersonaje;
+    }
+
+    public void guardarCambios(ArrayList<Personajes> listaPersonajes) throws FormatoInvalidoException {
+        jsonHelper.escribirJSON(listaPersonajes);
+    }
+
+    /* (ANTIGUO="FOTO VATER") public void crearPersonaje() throws RPGDataException {
        // cargarTodo();
 
         Scanner sc=new Scanner(System.in);
@@ -113,7 +123,4 @@ public ArrayList<String> item(String idItem){
         System.out.println("Has elegido el equipo : "+personajeNuevo.getEquipoIds());
         listaPersonajes.add(personajeNuevo);
     }*/
-    public void guardarCambios(){
-
-    }
 }

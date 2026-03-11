@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TxtHelper {
+    private LoggerCustom loggerCustom ;
+
+    public TxtHelper() {
+        this.loggerCustom = new LoggerCustom();
+    }
+
     public ArrayList<Ciudades> leerCiudades() throws FormatoInvalidoException {
         ArrayList<Ciudades> ciudades=new ArrayList<>();
         try {
@@ -19,9 +25,9 @@ public class TxtHelper {
                 ciudades.add(ciudades2);
             }
         } catch (Exception e) {
-            throw new FormatoInvalidoException("Error al procesar el fichero ciudades.txt: " + e.getMessage());
+            loggerCustom.escribirLog("ERROR: Al procesar el fichero ciudades.txt: " + e.getMessage());
+            throw new FormatoInvalidoException("ERROR: Al procesar el fichero ciudades.txt: " + e.getMessage());
         }
         return ciudades;
     }
-
 }

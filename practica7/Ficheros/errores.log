@@ -1,4 +1,17 @@
-[2026-03-11T14:16:54.835759600]Error
-ERROR: El idItem que buscas no existe ERROR: El idItem que buscas no existe 
-ERROR: El idItem que buscas no existe ERROR: El idItem que buscas no existe 
-ERROR: El idItem que buscas no existe 
+[2026-03-11T18:30:36.310943400]ERROR: El idItem que buscas no existe
+[2026-03-11T18:32:12.346624500]ERROR: El idItem que buscas no existe 
+[2026-03-11T19:23:20.802884400] ERROR: Al procesar el fichero items.json : prcactica7\Ficheros\items.json (El sistema no puede encontrar la ruta especificada)
+[2026-03-11T19:23:58.076718900] ERROR: Al procesar el fichero personajes.json : prdactica7\Ficheros\personajes.json (El sistema no puede encontrar la ruta especificada)
+[2026-03-11T19:24:19.773017500] ERROR: Al procesar el fichero items.json : pradctica7\Ficheros\items.json (El sistema no puede encontrar la ruta especificada)
+[2026-03-11T19:24:42.986785600] ERROR: Al procesar el fichero personajes.json : prdactica7\Ficheros\personajes.json (El sistema no puede encontrar la ruta especificada)
+[2026-03-11T19:35:01.871320200] Error al procesar el fichero ciudades.txt: prdactica7\Ficheros\ciudades.txt
+[2026-03-11T19:38:02.125905300] Error al procesar el fichero ciudades.txt: prdactica7\Ficheros\ciudades.txt
+[2026-03-11T19:38:31.750219] ERROR: Al procesar el fichero personajes.json : prdactica7\Ficheros\personajes.json (El sistema no puede encontrar la ruta especificada)
+[2026-03-11T19:39:26.353649800] ERROR: El nival no puede ser inferior a 0
+[2026-03-11T22:04:38.825112700] ERROR: Al procesar el fichero ciudades.txt: practica7\Fichedros\ciudades.txt
+[2026-03-11T22:05:25.689764200] ERROR: Al procesar el fichero personajes.json : practica7\Ficherods\personajes.json (El sistema no puede encontrar la ruta especificada)
+[2026-03-11T23:01:55.278660900] ERROR: El nivel no puede ser inferior a 0
+[2026-03-11T23:03:54.028535100] ERROR: Al escribir en el JSON : practica7\Fichaeros\personajes.json (El sistema no puede encontrar la ruta especificada)
+[2026-03-11T23:16:11.909917600] ERROR: Al procesar el fichero personajes.json : com.google.gson.stream.MalformedJsonException: Unterminated object at line 22 column 6 path $[2].nivel
+[2026-03-11T23:16:53.899861800] ERROR: Al procesar el fichero items.json : com.google.gson.stream.MalformedJsonException: Unterminated object at line 4 column 52 path $[2].tipo
+[2026-03-11T23:17:22.224240800] ERROR: Al procesar el fichero ciudades.txt: For input string: ",5"
