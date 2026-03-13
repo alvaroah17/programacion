@@ -2,6 +2,8 @@ package utils;
 
 import handler.FormatoInvalidoException;
 import model.Ciudades;
+
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class TxtHelper {
     public ArrayList<Ciudades> leerCiudades() throws FormatoInvalidoException {
         ArrayList<Ciudades> ciudades=new ArrayList<>();
         try {
-            List<String> lineas = Files.readAllLines(Paths.get("practica7\\Ficheros\\ciudades.txt"));
+            List<String> lineas = Files.readAllLines(Paths.get("practica7"+File.separator+"Ficheros"+ File.separator+"ciudades.txt"));
             for (String linea : lineas) {
                 //System.out.println(linea);
                 String [] s =linea.split(";");
