@@ -6,10 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import handler.FormatoInvalidoException;
 import model.Items;
 import model.Personajes;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.Reader;
+
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -22,7 +20,7 @@ public class JsonHelper {
     public ArrayList<Personajes> leerJsonPersonajes () throws FormatoInvalidoException {
         ArrayList<Personajes> listaPersonajes=new ArrayList<>();
         Gson gson = new Gson();
-        try (Reader reader = new FileReader("practica7\\Ficheros\\personajes.json")){
+        try (Reader reader = new FileReader("practica7"+ File.separator+"Ficheros"+File.separator+"personajes.json")){
             Type tokenPersonajes = new TypeToken<ArrayList<Personajes>>() {}.getType();
             listaPersonajes=gson.fromJson(reader, tokenPersonajes);
         }catch (Exception e){
@@ -35,7 +33,7 @@ public class JsonHelper {
     public ArrayList<Items> leerJsonItems () throws FormatoInvalidoException {
         ArrayList<Items> listaItems =new ArrayList<>();
         Gson gson = new Gson();
-        try (Reader reader = new FileReader("practica7\\Ficheros\\items.json")){
+        try (Reader reader = new FileReader("practica7"+File.separator+"Ficheros"+File.separator+"items.json")){
             Type tokenItems = new TypeToken<ArrayList<Items>>() {}.getType();
             listaItems =gson.fromJson(reader, tokenItems);
         }catch (Exception e){
@@ -46,7 +44,7 @@ public class JsonHelper {
     }
 
     public void escribirJSON(ArrayList<Personajes> listaPersonajes) throws FormatoInvalidoException{
-        String path="practica7\\Ficheros\\personajes.json";
+        String path="practica7"+File.separator+"Ficheros"+File.separator+"personajes.json";
         try(BufferedWriter writer=new BufferedWriter(new FileWriter(path))){
             Gson gson=new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(listaPersonajes, writer);
