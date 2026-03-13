@@ -5,7 +5,8 @@
     "nivel": 20,
     "equipoIds": [
       "W01"
-    ]
+    ],
+    "nombreCiudad": "Bree"
   },
   {
     "nombre": "Legolas",
@@ -13,14 +14,25 @@
     "nivel": 25,
     "equipoIds": [
       "K01"
-    ]
+    ],
+    "nombreCiudad": "Rivendel"
   },
   {
     "nombre": "Pepe",
     "raza": "Elfo",
     "nivel": 1,
     "equipoIds": [
-      "K01"
-    ]
+      "H01"
+    ],
+    "nombreCiudad": "Mordor"
+  },
+  {
+    "nombre": "Paco",
+    "raza": "Enano",
+    "nivel": 10,
+    "equipoIds": [
+      "P01"
+    ],
+    "nombreCiudad": "Sahara"
   }
 ]

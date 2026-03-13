@@ -15,3 +15,12 @@
 [2026-03-11T23:16:11.909917600] ERROR: Al procesar el fichero personajes.json : com.google.gson.stream.MalformedJsonException: Unterminated object at line 22 column 6 path $[2].nivel
 [2026-03-11T23:16:53.899861800] ERROR: Al procesar el fichero items.json : com.google.gson.stream.MalformedJsonException: Unterminated object at line 4 column 52 path $[2].tipo
 [2026-03-11T23:17:22.224240800] ERROR: Al procesar el fichero ciudades.txt: For input string: ",5"
+[2026-03-13T10:25:55.084089600] ERROR: Al procesar el fichero personajes.json : com.google.gson.stream.MalformedJsonException: Expected value at line 10 column 3 path $[0].Ciudad
+[2026-03-13T10:32:22.658606900] ERROR: NO es compatible la raza Enano y el clima desierto
+[2026-03-13T10:55:50.654964500] ERROR: NO es compatible la raza Enano y el clima desierto
+[2026-03-13T10:56:44.028897500] ERROR: NO es compatible la raza Enano y el clima desierto
+[2026-03-13T10:56:44.035850] ERROR: No puede haber un objeto de tipo hielo en un clima volcanico
+[2026-03-13T11:00:25.939792300] ERROR: NO es compatible la raza Enano y el clima desierto
+[2026-03-13T11:00:25.948768200] ERROR: No puede haber un objeto de tipo hielo en un clima volcanico
+[2026-03-13T11:04:55.017543700] ERROR: NO es compatible la raza Enano y el clima desierto
+[2026-03-13T11:04:55.023255500] ERROR: No puede haber un objeto de tipo hielo en un clima volcanico

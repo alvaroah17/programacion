@@ -4,3 +4,5 @@ Gondor;25000;Soleado;4
 Moria;3000;Oscuro;9
 Lothlorien;9000;Húmedo;1
 Bree;4000;Lluvioso;5
+Sahara;5000;Desertico;8
+Mordor;9000;Volcanico;10

@@ -8,12 +8,14 @@ public class Personajes {
     private String raza;
     private int nivel;
     private ArrayList<String> equipoIds;
+    private String nombreCiudad;
 
-    public Personajes(String nombre, String raza, int nivel, ArrayList<String> equipoIds) {
+    public Personajes(String nombre, String raza, int nivel, ArrayList<String> equipoIds, String nombreCiudad) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
         this.equipoIds = equipoIds;
+        this.nombreCiudad=nombreCiudad;
     }
 
     public String getNombre() {
@@ -46,6 +48,14 @@ public class Personajes {
 
     public void setEquipoIds(ArrayList<String> equipoIds) {
         this.equipoIds = equipoIds;
+    }
+
+    public String getNombreCiudad() {
+        return nombreCiudad;
+    }
+
+    public void setNombreCiudad(String nombreCiudad) {
+        this.nombreCiudad = nombreCiudad;
     }
 
     @Override
