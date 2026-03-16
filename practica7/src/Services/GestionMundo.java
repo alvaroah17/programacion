@@ -131,7 +131,7 @@ public class GestionMundo {
                         loggerCustom.escribirLog("ERROR: NO es compatible la raza Enano y el clima desierto");
                         //throw new ValidadorBiomaException("ERROR: NO es compatible la raza Enano y el clima desierto");
                         listaPersonajesAeliminar.add(personajeAcomprobar);
-                        listaPersonajes.remove(listaPersonajesAeliminar);
+                        //listaPersonajes.remove(listaPersonajesAeliminar);
                     }
                 }
             }
@@ -145,13 +145,12 @@ public class GestionMundo {
                             //  throw new ValidadorBiomaException("ERROR: No puede haber un objeto de tipo hielo en un clima volcanico");
                             // intento borrar personaje
                             listaPersonajesAeliminar.add(personajeAcomprobar);
-                            if (listaPersonajes.get(i).equals(listaPersonajesAeliminar.get(i))){
-                                listaPersonajes.remove(i);
-                            }
+                            //listaPersonajes.remove(listaPersonajesAeliminar);
                         }
                     }
                 }
             }
         }
+        listaPersonajes.removeAll(listaPersonajesAeliminar);
     }
 }
