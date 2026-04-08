@@ -1,5 +1,6 @@
 package rpg;
 
+import rpg.dao.RazaDAO;
 import rpg.exception.BDException;
 
 import java.sql.*;
@@ -24,7 +25,7 @@ public class main {
                 System.out.println(id + "\t" + nombre + "\t" + bonificador_vida + "\t" + bonificador_fuerza);
             }
         } catch (SQLException e) {
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos"+ e.getMessage());
             //System.out.println("Error en la conexión de la base de datos");
             //e.printStackTrace();
         }
