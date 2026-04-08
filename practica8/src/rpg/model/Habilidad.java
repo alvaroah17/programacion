@@ -14,4 +14,44 @@ public class Habilidad {
         this.usosMaximos = usosMaximos;
         this.idClase = idClase;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getDañoBase() {
+        return dañoBase;
+    }
+
+    public void setDañoBase(int dañoBase) {
+        this.dañoBase = dañoBase;
+    }
+
+    public int getUsosMaximos() {
+        return usosMaximos;
+    }
+
+    public void setUsosMaximos(int usosMaximos) {
+        this.usosMaximos = usosMaximos;
+    }
+
+    public int getIdClase() {
+        return idClase;
+    }
+
+    public void setIdClase(int idClase) {
+        this.idClase = idClase;
+    }
 }

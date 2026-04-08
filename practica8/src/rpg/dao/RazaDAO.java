@@ -1,6 +1,7 @@
 package rpg.dao;
 
 import rpg.exception.BDException;
+import rpg.model.Personaje;
 import rpg.model.Raza;
 
 import java.sql.*;
@@ -44,5 +45,13 @@ public class RazaDAO{
             //System.out.println("Error en la conexión de la base de datos");
             //e.printStackTrace();
         }
+    }
+    public Raza RazaPorId (Personaje personaje){
+        for (Raza razaAcomprobar:razas){
+            if (personaje.getId_raza()==razaAcomprobar.getId()){
+
+            }
+        }
+        return
     }
 }

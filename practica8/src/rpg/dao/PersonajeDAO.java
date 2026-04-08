@@ -20,22 +20,22 @@ public class PersonajeDAO {
     }
 
     public void conexionDB() throws BDException{
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+        /*try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();
              ResultSet resultset = statement.executeQuery("SELECT * FROM personajes")) {
             while (resultset.next()) {
+
                 int id = resultset.getInt("id");
                 String nombre = resultset.getString("nombre");
                 int nivel = resultset.getInt("nivel");
                 int oro = resultset.getInt("oro");
                 int vida_actual = resultset.getInt("vida_actual");
-                int id_raza = resultset.getInt("id_raza");
-                int id_clase = resultset.getInt("id_clase");
-                int id_ciudad_actual = resultset.getInt("id_ciudad_actual");
-                personajes.add(new Personaje(id, nombre, nivel, oro, vida_actual, id_raza, id_clase, id_ciudad_actual));
+                Raza raza = resultset.getRaza("id_raza");
+
+                personajes.add(new Personaje(id, nombre, nivel, oro, vida_actual, raza, clase, ciudad);
             }
         } catch (SQLException e) {
             throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
-        }
+        }*/
     }
 }

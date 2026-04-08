@@ -1,4 +1,32 @@
 package rpg.dao;
 
+import rpg.exception.BDException;
+import rpg.model.Ciudad;
+import java.sql.*;
+import java.util.ArrayList;
+
 public class CiudadDAO {
+    private ArrayList<Ciudad> ciudades;
+
+    private String URL="jdbc:postgresql://localhost:5432/XRPG";
+    private String USER="xrpg_user";
+    private String PASSWD="xrpg_password";
+
+    public void conexionDB() throws BDException {
+        /// CONEXION CON LA TABLA CIUDAD DE LA BASE DE DATOS
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             Statement statement = connection.createStatement();
+             ResultSet resultset = statement.executeQuery("SELECT * FROM ciudades")) {
+
+            while (resultset.next()) {
+                int id = resultset.getInt("id");
+                String nombre = resultset.getString("nombre");
+                int nivelMinimoAcceso = resultset.getInt("nivelMinimoAcceso");
+
+                ciudades.add(new Ciudad(id, nombre, nivelMinimoAcceso));
+            }
+        } catch (SQLException e) {
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
+        }
+    }
 }
