@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 
 public class LoggerCustom {
 
-    public void escribirLog(String mensaje)  {
-        String path = "practica8"+ File.separator+"Ficheros"+ File.separator+"errores.log";
+    public static void escribirLog(String mensaje)  {
+        String path = "practica8"+ File.separator+"src"+ File.separator+"rpg"+ File.separator+"info.log";
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(path,true))){
             writer.write("["+ LocalDateTime.now()+"] "+mensaje);
             writer.newLine();

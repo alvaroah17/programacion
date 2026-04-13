@@ -12,7 +12,12 @@ public class HabilidadesDAO {
     private String USER="xrpg_user";
     private String PASSWD="xrpg_password";
 
-    public void conexionDB() throws BDException {
+    public HabilidadesDAO() throws BDException {
+        this.habilidades =new ArrayList<>();
+        hConexionDB();
+    }
+
+    public void hConexionDB() throws BDException {
         /// CONEXION CON LA TABLA HABILIDAD DE LA BASE DE DATOS
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();

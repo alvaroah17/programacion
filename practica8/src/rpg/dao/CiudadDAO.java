@@ -12,7 +12,12 @@ public class CiudadDAO {
     private String USER="xrpg_user";
     private String PASSWD="xrpg_password";
 
-    public void conexionDB() throws BDException {
+    public CiudadDAO() throws BDException {
+        this.ciudades = new ArrayList<>();
+        cConexionDB();
+    }
+
+    public void cConexionDB() throws BDException {
         /// CONEXION CON LA TABLA CIUDAD DE LA BASE DE DATOS
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();

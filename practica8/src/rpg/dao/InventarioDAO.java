@@ -13,7 +13,12 @@ public class InventarioDAO {
     private String USER="xrpg_user";
     private String PASSWD="xrpg_password";
 
-    public void conexionDB() throws BDException {
+    public InventarioDAO() throws BDException {
+        this.inventarios = new ArrayList<>();
+        inConexionDB();
+    }
+
+    public void inConexionDB() throws BDException {
         /// CONEXION CON LA TABLA DE LA BASE DE DATOS
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();

@@ -2,11 +2,12 @@ package rpg;
 
 import rpg.dao.RazaDAO;
 import rpg.exception.BDException;
+import rpg.utils.LoggerCustom;
 
 import java.sql.*;
 
 public class main {
-
+    LoggerCustom loggerCustom=new LoggerCustom();
     private String URL="jdbc:postgresql://localhost:5432/XRPG";
     private String USER="xrpg_user";
     private String PASSWD="xrpg_password";
@@ -25,8 +26,8 @@ public class main {
                 System.out.println(id + "\t" + nombre + "\t" + bonificador_vida + "\t" + bonificador_fuerza);
             }
         } catch (SQLException e) {
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos"+ e.getMessage());
-            //System.out.println("Error en la conexión de la base de datos");
+            loggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos"+" --> " +e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos"+" --> " +e.getMessage());
             //e.printStackTrace();
         }
     }

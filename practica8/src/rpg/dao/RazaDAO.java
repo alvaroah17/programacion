@@ -18,7 +18,7 @@ public class RazaDAO{
     public RazaDAO() throws BDException{
         ///INICIALIZAMOS LA LISTA
         this.razas=new ArrayList<>();
-        conexionDB();
+        rConexionDB();
     }
 
     /// GETTERS AND SETTERS
@@ -27,7 +27,7 @@ public class RazaDAO{
     }
 
     /// FUNCIONES
-    public void conexionDB() throws BDException{
+    public void rConexionDB() throws BDException{
         /// CONEXION CON LA TABLAR RAZA DE LA BASE DE DATOS
         try(Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
             Statement statement = connection.createStatement();
@@ -45,13 +45,5 @@ public class RazaDAO{
             //System.out.println("Error en la conexión de la base de datos");
             //e.printStackTrace();
         }
-    }
-    public Raza RazaPorId (Personaje personaje){
-        for (Raza razaAcomprobar:razas){
-            if (personaje.getId_raza()==razaAcomprobar.getId()){
-
-            }
-        }
-        return
     }
 }

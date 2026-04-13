@@ -13,7 +13,12 @@ public class ItemDAO {
     private String USER="xrpg_user";
     private String PASSWD="xrpg_password";
 
-    public void conexionDB() throws BDException {
+    public ItemDAO() throws BDException {
+        this.items = new ArrayList<>();
+        itconexionDB();
+    }
+
+    public void itConexionDB() throws BDException {
         /// CONEXION CON LA TABLAR RAZA DE LA BASE DE DATOS
         try(Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
             Statement statement = connection.createStatement();

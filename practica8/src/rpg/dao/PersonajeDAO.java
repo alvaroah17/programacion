@@ -5,12 +5,14 @@ import rpg.model.Ciudad;
 import rpg.model.Clase;
 import rpg.model.Personaje;
 import rpg.model.Raza;
+import rpg.utils.LoggerCustom;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class PersonajeDAO {
     private ArrayList<Personaje> personajes;
+    public LoggerCustom loggerCustom;
 
     private String URL="jdbc:postgresql://localhost:5432/XRPG";
     private String USER="xrpg_user";
@@ -18,10 +20,10 @@ public class PersonajeDAO {
 
     public PersonajeDAO() throws BDException{
         this.personajes=new ArrayList<>();
-        conexionDB();
+        pConexionDB();
     }
 
-    public void conexionDB() throws BDException{
+    public void pConexionDB() throws BDException{
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();
              ResultSet resultset = statement.executeQuery(
@@ -65,7 +67,39 @@ public class PersonajeDAO {
                 personajes.add(new Personaje(id, nombre, nivel, oro, vida, raza, clase, ciudad));
             }
         } catch (SQLException e) {
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
         }
+    }
+
+    public void actualizarOroBD (Personaje personaje) throws BDException {
+        try(Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Personajes SET oro = ? WHERE id = ?")){
+            preparedStatement.setInt(1, personaje.getOro());
+            preparedStatement.setInt(2, personaje.getId() );
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error con la base de datos al actualizar el oro del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+            throw new BDException ("ERROR: Ha ocurrido un error con la base de datos al actualizar el oro del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+        }
+    }
+
+    public void actualizarCiudadBD (Personaje personaje) throws BDException {
+        try(Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Personajes SET id_ciudad_actual = ? WHERE id = ?")){
+            preparedStatement.setNull(1, Types.INTEGER);
+            preparedStatement.setInt(2, personaje.getId() );
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error con la base de datos al actualizar la ciudad del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+            throw new BDException ("ERROR: Ha ocurrido un error con la base de datos al actualizar la ciudad del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+        }
+    }
+    public ArrayList<Personaje> getPersonajes() {
+        return personajes;
     }
 }
