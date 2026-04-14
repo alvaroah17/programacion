@@ -16,7 +16,7 @@ public class Personaje {
         this.nombre = nombre;
         this.nivel = nivel;
         this.oro = oro;
-        this.vida_actual = vida_actual;
+        this.vida_actual = vida_actual + raza.getBonificadorVida();
         this.raza = raza;
         this.clase = clase;
         this.ciudad_actual = ciudad_actual;
