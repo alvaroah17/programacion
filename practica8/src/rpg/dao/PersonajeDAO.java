@@ -173,7 +173,14 @@ public class PersonajeDAO {
             throw new BDException("ERROR: Al cambiar de ciudad en la BD");
         }
     }
-    public ArrayList<Personaje> getPersonajes() {
-        return personajes;
+
+    public void guardarCompraBD (Personaje personaje, Item item){
+        String sqlCheck = "SELECT cantidad FROM Inventarios WHERE id_personaje = ? AND id_item = ?";
+        String sqlUpdate = "UPDATE Inventarios SET cantidad = cantidad + 1 WHERE id_personaje = ? AND id_item = ?";
+        String sqlInsert = "INSERT INTO Inventarios (id_personaje, id_item, cantidad) VALUES (?, ?, 1)";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+
+        )
     }
 }
