@@ -22,7 +22,7 @@ public class InventarioDAO {
         /// CONEXION CON LA TABLA DE LA BASE DE DATOS
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
              Statement statement = connection.createStatement();
-             ResultSet resultset = statement.executeQuery("SELECT * FROM nombre_de_tu_tabla")) {
+             ResultSet resultset = statement.executeQuery("SELECT * FROM inventarios")) {
 
             while (resultset.next()) {
                 int idPersonaje = resultset.getInt("idPersonaje");

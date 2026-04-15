@@ -26,7 +26,7 @@ public class HabilidadesDAO {
             while (resultset.next()) {
                 int id = resultset.getInt("id");
                 String nombre = resultset.getString("nombre");
-                int dañoBase = resultset.getInt("dañoBase");
+                int dañoBase = resultset.getInt("dano_Base");
                 int usosMaximos = resultset.getInt("usosMaximos");
                 int idClase = resultset.getInt("idClase");
 

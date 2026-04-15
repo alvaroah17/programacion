@@ -99,5 +99,19 @@ public class Personaje {
         return inventario;
     }
 
+    public void aniardirItem(Item itemNuevo, Integer numeroItems){
+        boolean encontrado=false;
 
+        for (Item itemAbuscar : this.inventario.keySet()){
+            if (itemAbuscar.getId()== itemNuevo.getId()){
+               this.inventario.put(itemAbuscar, this.inventario.get(itemAbuscar) + numeroItems);
+               return;
+            }
+        }
+        this.inventario.put(itemNuevo, numeroItems);
+    }
+
+    public void aniadirHabilidad (Habilidad nuevaHabilidad){
+        this.hablidades.add(nuevaHabilidad);
+    }
 }

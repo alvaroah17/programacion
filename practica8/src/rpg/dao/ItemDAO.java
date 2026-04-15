@@ -15,7 +15,7 @@ public class ItemDAO {
 
     public ItemDAO() throws BDException {
         this.items = new ArrayList<>();
-        itconexionDB();
+        itConexionDB();
     }
 
     public void itConexionDB() throws BDException {

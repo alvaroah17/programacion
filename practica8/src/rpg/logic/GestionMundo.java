@@ -3,9 +3,13 @@ package rpg.logic;
 import rpg.dao.*;
 import rpg.exception.BDException;
 import rpg.exception.FondosInsuficientesException;
+import rpg.exception.NIvelInsuficienteException;
+import rpg.model.Ciudad;
 import rpg.model.Personaje;
 import rpg.utils.LoggerCustom;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -39,7 +43,7 @@ public class GestionMundo {
 
             if (personaje.getOro()<0){
                 it.remove();
-                personajeDAO.actualizarCiudadBD(personaje);
+                personajeDAO.actualizarCiudadNUllBD(personaje);
                 LoggerCustom.escribirLog("DESTIERRO: " + personaje.getNombre() + " por impago.");
             }
             else {
@@ -51,14 +55,25 @@ public class GestionMundo {
 
     public void comprobarOro (Personaje personaje, int cantidadComprobada) throws FondosInsuficientesException {
         if (personaje.getOro()<cantidadComprobada){
-            loggerCustom.escribirLog("ERROR: "+personaje.getNombre()+"no tiene suficiente oro");
-            throw new FondosInsuficientesException("ERROR: "+personaje.getNombre()+"no tiene suficiente oro");
+            loggerCustom.escribirLog("ERROR: "+personaje.getNombre()+" no tiene suficiente oro");
+            throw new FondosInsuficientesException("ERROR: "+personaje.getNombre()+" no tiene suficiente oro");
         }else {
             personaje.setOro(personaje.getOro()-cantidadComprobada);
         }
     }
 
-    public void comprobarNivel (Personaje personaje){
+    public void viajarCiudad (Personaje personaje, Ciudad ciudadNueva) throws NIvelInsuficienteException, BDException {
+        if (personaje.getNivel()>=ciudadNueva.getNivelMinimoAcceso()){
+            personaje.setCiudad_actual(ciudadNueva);
+            personajeDAO.actualizarCiudadViajeBD(personaje);
+        }
+        else {
+            LoggerCustom.escribirLog("NIVEL INSUFICIENTE: El personaje "+personaje.getNombre()+" no alcanza el nivel minimo de acceso para la ciudad. " +
+                    "| Nivel de "+personaje.getNombre()+": "+personaje.getNivel()+" | nivel requerido para viajar a esa ciudad: "+ciudadNueva.getNivelMinimoAcceso()+" |");
+            throw new NIvelInsuficienteException("NIVEL INSUFICIENTE: El personaje "+personaje.getNombre()+" no alcanza el nivel minimo de acceso para la ciudad. " +
+                    "| Nivel de "+personaje.getNombre()+": "+personaje.getNivel()+" | nivel requerido para viajar a esa ciudad: "+ciudadNueva.getNivelMinimoAcceso()+" |");
+        }
 
     }
+
 }

@@ -65,3 +65,4 @@ public class Item {
         this.bonificador_defensa = bonificador_defensa;
     }
 }
+
