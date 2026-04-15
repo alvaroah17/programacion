@@ -63,6 +63,7 @@ public class PersonajeDAO {
                 int nivAcceso = resultset.getInt("nivel_minimo_acceso");
                 Ciudad ciudad = new Ciudad(idCiu, nomCiu, nivAcceso);
 
+
                 // --- AÑADIR AL PERSONAJE ---
                 personajes.add(new Personaje(id, nombre, nivel, oro, vida, raza, clase, ciudad));
             }
@@ -99,6 +100,7 @@ public class PersonajeDAO {
                     + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
         }
     }
+
     public ArrayList<Personaje> getPersonajes() {
         return personajes;
     }

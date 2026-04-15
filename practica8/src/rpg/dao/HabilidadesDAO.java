@@ -37,4 +37,23 @@ public class HabilidadesDAO {
         }
     }
 
+    public void cargarHabilidadesPersonaje() throws BDException{
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             Statement statement = connection.createStatement();
+             ResultSet resultset = statement.executeQuery("SELECT h.id, h.nombre, h.dano_base, h.usos_maximos, ph.equipada_combate " +
+                                                                "FROM Habilidades h " +
+                                                                "JOIN Personajes_Habilidades ph ON h.id = ph.id_habilidad " +
+                                                                "WHERE ph.id_personaje = ?"))
+        {
+            while (resultset.next()) {
+                int id = resultset.getInt("id");
+                String nombre = resultset.getString("nombre");
+                int dañoBase = resultset.getInt("dañoBase");
+                int usosMaximos = resultset.getInt("usosMaximos");
+                int idClase = resultset.getInt("idClase");
+            }
+        } catch (SQLException e) {
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
+        }
+    }
 }

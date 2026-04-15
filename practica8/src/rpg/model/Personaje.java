@@ -1,5 +1,10 @@
 package rpg.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Personaje {
     private int id;
     private String nombre;
@@ -9,6 +14,8 @@ public class Personaje {
     private Raza raza;
     private Clase clase;
     private Ciudad ciudad_actual;
+    private Map<Item, Integer> inventario;
+    private List<Habilidad> hablidades;
 
 
     public Personaje(int id, String nombre, int nivel, int oro, int vida_actual, Raza raza, Clase clase, Ciudad ciudad_actual) {
@@ -20,6 +27,8 @@ public class Personaje {
         this.raza = raza;
         this.clase = clase;
         this.ciudad_actual = ciudad_actual;
+        this.inventario = new HashMap<>();
+        this.hablidades=new ArrayList<>();
     }
 
     public int getId() {
@@ -85,4 +94,10 @@ public class Personaje {
     public void setCiudad_actual(Ciudad ciudad_actual) {
         this.ciudad_actual = ciudad_actual;
     }
+
+    public Map<Item, Integer> getInventario() {
+        return inventario;
+    }
+
+
 }
