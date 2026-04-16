@@ -39,4 +39,8 @@ public class ItemDAO {
             //e.printStackTrace();
         }
     }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 }

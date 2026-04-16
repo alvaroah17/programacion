@@ -67,8 +67,8 @@ public class PersonajeDAO {
                 personajes.add(personaje);
             }
         } catch (SQLException e) {
-            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
         }
     }
 
@@ -126,8 +126,8 @@ public class PersonajeDAO {
                 personaje.aniardirItem(itemsBD, cantidadItem);
             }
         }catch (SQLException e){
-            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
         }
     }
 
@@ -154,8 +154,8 @@ public class PersonajeDAO {
                 personaje.aniadirHabilidad(habilidadesBD);
             }
         }catch (SQLException e){
-            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos --> "+ e.getMessage());
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
         }
     }
 
@@ -174,13 +174,53 @@ public class PersonajeDAO {
         }
     }
 
-    public void guardarCompraBD (Personaje personaje, Item item){
+    public void guardarCompraBD (Personaje personaje, Item item) throws BDException{
+        ///SQL PARA COMPROBAR Y REORGANIZAR INVENTARIO
         String sqlCheck = "SELECT cantidad FROM Inventarios WHERE id_personaje = ? AND id_item = ?";
         String sqlUpdate = "UPDATE Inventarios SET cantidad = cantidad + 1 WHERE id_personaje = ? AND id_item = ?";
         String sqlInsert = "INSERT INTO Inventarios (id_personaje, id_item, cantidad) VALUES (?, ?, 1)";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+        ///SQL PARA ACTUALIZAR EL ORO EN LA BD DESPUES DE LA COMPRA Y HABER SIDO ACTUALIZADO EN LOCAL
+        String sqlOro = "UPDATE Personajes SET oro = ? WHERE id = ?";
 
-        )
+        ///EMPEZAMOS A HACER CONEXIONES CON LA BD, HAY TANTOS TRY PORQUE SON WITH-RESOURCES PARA NO TENER QUE CERRARLOS MANUALMENTE
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             //PARA RESTAR EL ORO
+            PreparedStatement preparedStatementRestarOro = connection.prepareStatement(sqlOro)){
+            preparedStatementRestarOro.setInt(1, personaje.getOro());
+            preparedStatementRestarOro.setInt(2, personaje.getId());
+            preparedStatementRestarOro.executeUpdate();
+
+            //PARA COMPROBAR SI EL OBJETO YA EXISTE EN EL PERSONAJE
+            try(PreparedStatement preparedStatementCheck = connection.prepareStatement(sqlCheck)){
+                preparedStatementCheck.setInt(1, personaje.getId());
+                preparedStatementCheck.setInt(2, item.getId());
+                ResultSet resultSetCheck = preparedStatementCheck.executeQuery();
+
+                //SI TIENE "NEXT" SIGNIFICA QUE YA EXISTE ESE OBJETO AL DEVOLVER UN REGISTRO EN LA CONSULTA Y HACEMOS UPDATE A LA CANTIDAD DE ESE OBJETO +1
+                if (resultSetCheck.next()){
+                    try (PreparedStatement preparedStatementUpdate = connection.prepareStatement(sqlUpdate);){
+                        preparedStatementUpdate.setInt(1, personaje.getId());
+                        preparedStatementUpdate.setInt(2, item.getId());
+                        preparedStatementUpdate.executeUpdate();
+                    }
+                }
+                //SINO DEVUELVE NINGUN "NEXT" O REGISTRO ENTONCES HACEMOS UN INSERT CON EL NUEVO OBJETO
+                else {
+                    try (PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert);){
+                        preparedStatementInsert.setInt(1, personaje.getId());
+                        preparedStatementInsert.setInt(2, item.getId());
+                        preparedStatementInsert.executeUpdate();
+                    }
+                }
+            }
+        }catch (SQLException e){
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
+        }
+    }
+
+    public ArrayList<Personaje> getPersonajes() {
+        return personajes;
     }
 }
