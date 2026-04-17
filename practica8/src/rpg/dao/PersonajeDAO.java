@@ -1,6 +1,7 @@
 package rpg.dao;
 
 import rpg.exception.BDException;
+import rpg.exception.LimiteHabilidadesException;
 import rpg.model.*;
 import rpg.utils.LoggerCustom;
 
@@ -17,6 +18,10 @@ public class PersonajeDAO {
     public PersonajeDAO() throws BDException{
         this.personajes=new ArrayList<>();
         pConexionDB();
+    }
+
+    public ArrayList<Personaje> getPersonajes() {
+        return personajes;
     }
 
     public void pConexionDB() throws BDException{
@@ -75,7 +80,12 @@ public class PersonajeDAO {
     public void actualizarOroBD (Personaje personaje) throws BDException {
         try(Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Personajes SET oro = ? WHERE id = ?")){
-            preparedStatement.setInt(1, personaje.getOro());
+            if (personaje.getOro()<0){
+                preparedStatement.setInt(1,0);
+            }
+            else {
+                preparedStatement.setInt(1, personaje.getOro());
+            }
             preparedStatement.setInt(2, personaje.getId() );
             preparedStatement.executeUpdate();
         }catch (SQLException e){
@@ -86,19 +96,6 @@ public class PersonajeDAO {
         }
     }
 
-    public void actualizarCiudadNUllBD(Personaje personaje) throws BDException {
-        try(Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Personajes SET id_ciudad_actual = ? WHERE id = ?")){
-            preparedStatement.setNull(1, Types.INTEGER);
-            preparedStatement.setInt(2, personaje.getId() );
-            preparedStatement.executeUpdate();
-        }catch (SQLException e){
-            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error con la base de datos al actualizar la ciudad del personaje con nombre: "
-                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
-            throw new BDException ("ERROR: Ha ocurrido un error con la base de datos al actualizar la ciudad del personaje con nombre: "
-                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
-        }
-    }
     public void cargarInventario(Personaje personaje) throws BDException{
         String sql=
                 "SELECT i.id AS id_item, i.nombre, i.tipo, i.precio_oro, i.bonificador_ataque, i.bonificador_defensa, inv.cantidad " +
@@ -124,13 +121,47 @@ public class PersonajeDAO {
 
                 Item itemsBD = new Item(id_item, nombreItem, tipo, precioOro, bonificadorAtaque, bonificadorDefensa);
                 personaje.aniardirItem(itemsBD, cantidadItem);
+                aniadirItemInventarioBD(personaje,itemsBD, cantidadItem);
             }
         }catch (SQLException e){
             LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
             throw new BDException("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
         }
     }
+    public void aniadirItemInventarioBD(Personaje personaje, Item item, int cantidad) throws BDException {
+        String sqlCheck  = "SELECT cantidad FROM Inventarios WHERE id_personaje = ? AND id_item = ?";
+        String sqlUpdate = "UPDATE Inventarios SET cantidad = cantidad + ? WHERE id_personaje = ? AND id_item = ?";
+        String sqlInsert = "INSERT INTO Inventarios (id_personaje, id_item, cantidad) VALUES (?, ?, ?)";
 
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             PreparedStatement preparedStatementCheck = connection.prepareStatement(sqlCheck)) {
+
+            preparedStatementCheck.setInt(1, personaje.getId());
+            preparedStatementCheck.setInt(2, item.getId());
+            ResultSet resultSetCheck = preparedStatementCheck.executeQuery();
+
+            if (resultSetCheck.next()) {
+                try (PreparedStatement preparedStatementUpdate = connection.prepareStatement(sqlUpdate)) {
+                    preparedStatementUpdate.setInt(1, cantidad);
+                    preparedStatementUpdate.setInt(2, personaje.getId());
+                    preparedStatementUpdate.setInt(3, item.getId());
+                    preparedStatementUpdate.executeUpdate();
+                }
+            } else {
+                try (PreparedStatement preparedStatementInsert = connection.prepareStatement(sqlInsert)) {
+                    preparedStatementInsert.setInt(1, personaje.getId());
+                    preparedStatementInsert.setInt(2, item.getId());
+                    preparedStatementInsert.setInt(3, cantidad);
+                    preparedStatementInsert.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al añadir item al inventario del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al añadir item al inventario del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+        }
+    }
     public void cargarHabilidades(Personaje personaje) throws BDException{
         String sql = "SELECT h.id, h.nombre, h.dano_base, h.usos_maximos, h.id_clase " +
                 "FROM Habilidades h " +
@@ -152,10 +183,29 @@ public class PersonajeDAO {
 
                  Habilidad habilidadesBD = new Habilidad(id_habilidades, nombreHabilidd, danioBase, usosMaximos, id_clase);
                 personaje.aniadirHabilidad(habilidadesBD);
+
             }
         }catch (SQLException e){
             LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
             throw new BDException("ERROR: Ha ocurrido un error al conectar con la BD o realizar una operacion --> "+ e.getMessage());
+        }
+    }
+
+    public void aniadirHabilidadPersonajeBD(Personaje personaje, Habilidad habilidad) throws BDException {
+        String sql = "INSERT INTO Personajes_Habilidades (id_personaje, id_habilidad, equipada_combate) VALUES (?, ?, false)";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, personaje.getId());
+            preparedStatement.setInt(2, habilidad.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al añadir habilidad al personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al añadir habilidad al personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
         }
     }
 
@@ -171,6 +221,20 @@ public class PersonajeDAO {
         }catch (SQLException e){
             LoggerCustom.escribirLog("ERROR: Al cambiar de ciudad en la BD");
             throw new BDException("ERROR: Al cambiar de ciudad en la BD");
+        }
+    }
+
+    public void actualizarCiudadNUllBD(Personaje personaje) throws BDException {
+        try(Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE Personajes SET id_ciudad_actual = ? WHERE id = ?")){
+            preparedStatement.setNull(1, Types.INTEGER);
+            preparedStatement.setInt(2, personaje.getId() );
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error con la base de datos al actualizar la ciudad del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
+            throw new BDException ("ERROR: Ha ocurrido un error con la base de datos al actualizar la ciudad del personaje con nombre: "
+                    + personaje.getNombre() + " y con id: " + personaje.getId() + " --> " + e.getMessage());
         }
     }
 
@@ -220,7 +284,87 @@ public class PersonajeDAO {
         }
     }
 
-    public ArrayList<Personaje> getPersonajes() {
-        return personajes;
+    public Personaje crearPersonajeBD(String nombre, Raza raza, Clase clase, Ciudad ciudad) throws BDException {
+        String sql = "INSERT INTO Personajes (nombre, nivel, oro, vida_actual, id_raza, id_clase, id_ciudad_actual) " +
+                "VALUES (?, 1, 100, ?, ?, ?, ?) RETURNING id";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, nombre);
+            preparedStatement.setInt(2, 100 + raza.getBonificadorVida());
+            preparedStatement.setInt(3, raza.getId());
+            preparedStatement.setInt(4, clase.getId());
+            preparedStatement.setInt(5, ciudad.getId());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                int idGenerado = resultSet.getInt("id");
+                Personaje nuevoPersonaje = new Personaje(idGenerado, nombre, 1, 100,
+                        100, raza, clase, ciudad);
+                personajes.add(nuevoPersonaje);
+                LoggerCustom.escribirLog("CREACION: Nuevo personaje creado --> ID: "+idGenerado
+                        + "Nombre: " + nombre
+                        + " | Raza: " + raza.getNombre()
+                        + " | Clase: " + clase.getNombre()
+                        + " | Ciudad: " + ciudad.getNombre());
+                return nuevoPersonaje;
+            } else {
+                throw new BDException("ERROR: No se pudo obtener el ID del personaje creado.");
+            }
+
+        } catch (SQLException e) {
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al crear el personaje --> " + e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al crear el personaje --> " + e.getMessage());
+        }
+    }
+
+    public void equiparHabilidadBD(Personaje personaje, Habilidad habilidad) throws BDException, LimiteHabilidadesException {
+        String sqlContarEquipadas = "SELECT COUNT(*) FROM Personajes_Habilidades " +
+                "WHERE id_personaje = ? AND equipada_combate = true";
+        String sqlEquipar = "UPDATE Personajes_Habilidades SET equipada_combate = true " +
+                "WHERE id_personaje = ? AND id_habilidad = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             PreparedStatement preparedStatementContar = connection.prepareStatement(sqlContarEquipadas)) {
+
+            preparedStatementContar.setInt(1, personaje.getId());
+            ResultSet resultSet = preparedStatementContar.executeQuery();
+
+            if (resultSet.next() && resultSet.getInt(1) >= 3) {
+                LoggerCustom.escribirLog("LIMITE HABILIDADES: " + personaje.getNombre()
+                        + " ya tiene 3 habilidades equipadas. No se puede equipar: " + habilidad.getNombre());
+                throw new LimiteHabilidadesException("LIMITE HABILIDADES: " + personaje.getNombre()
+                        + " ya tiene 3 habilidades equipadas. Desequipa una antes de equipar: " + habilidad.getNombre());
+            }
+
+            try (PreparedStatement preparedStatementEquipar = connection.prepareStatement(sqlEquipar)) {
+                preparedStatementEquipar.setInt(1, personaje.getId());
+                preparedStatementEquipar.setInt(2, habilidad.getId());
+                preparedStatementEquipar.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al equipar habilidad --> " + e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al equipar habilidad --> " + e.getMessage());
+        }
+    }
+
+    public void desequiparHabilidadBD(Personaje personaje, Habilidad habilidad) throws BDException {
+        String sql = "UPDATE Personajes_Habilidades SET equipada_combate = false " +
+                "WHERE id_personaje = ? AND id_habilidad = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, personaje.getId());
+            preparedStatement.setInt(2, habilidad.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error al desequipar habilidad --> " + e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error al desequipar habilidad --> " + e.getMessage());
+        }
     }
 }

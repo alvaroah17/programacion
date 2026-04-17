@@ -3,15 +3,11 @@ package rpg.logic;
 import rpg.dao.*;
 import rpg.exception.BDException;
 import rpg.exception.FondosInsuficientesException;
-import rpg.exception.NIvelInsuficienteException;
-import rpg.model.Ciudad;
-import rpg.model.Item;
-import rpg.model.Personaje;
+import rpg.exception.NivelInsuficienteException;
+import rpg.model.*;
 import rpg.utils.LoggerCustom;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class GestionMundo {
     private CiudadDAO ciudadDAO;
@@ -20,6 +16,7 @@ public class GestionMundo {
     private ItemDAO itemDAO;
     private PersonajeDAO personajeDAO;
     private RazaDAO razaDAO;
+    private ClaseDAO claseDAO;
     private Scanner sc;
 
     public GestionMundo() throws BDException {
@@ -29,6 +26,7 @@ public class GestionMundo {
         this.itemDAO = new ItemDAO();
         this.personajeDAO = new PersonajeDAO();
         this.razaDAO = new RazaDAO();
+        this.claseDAO=new ClaseDAO();
         sc=new Scanner(System.in);
     }
 
@@ -49,20 +47,6 @@ public class GestionMundo {
                 personajeDAO.actualizarOroBD(personaje);
                 LoggerCustom.escribirLog("IMPUESTOS: " + personaje.getNombre() + " ha pagado 20 monedas.");
             }
-        }
-    }
-
-    public void viajarCiudad (Personaje personaje, Ciudad ciudadNueva) throws NIvelInsuficienteException, BDException {
-
-        if (personaje.getNivel()>=ciudadNueva.getNivelMinimoAcceso()){
-            personaje.setCiudad_actual(ciudadNueva);
-            personajeDAO.actualizarCiudadViajeBD(personaje);
-        }
-        else {
-            LoggerCustom.escribirLog("NIVEL INSUFICIENTE: El personaje "+personaje.getNombre()+" no alcanza el nivel minimo de acceso para la ciudad. " +
-                    "| Nivel de "+personaje.getNombre()+": "+personaje.getNivel()+" | nivel requerido para viajar a esa ciudad: "+ciudadNueva.getNivelMinimoAcceso()+" |");
-            throw new NIvelInsuficienteException("NIVEL INSUFICIENTE: El personaje "+personaje.getNombre()+" no alcanza el nivel minimo de acceso para la ciudad. " +
-                    "| Nivel de "+personaje.getNombre()+": "+personaje.getNivel()+" | nivel requerido para viajar a esa ciudad: "+ciudadNueva.getNivelMinimoAcceso()+" |");
         }
     }
 
@@ -147,5 +131,219 @@ public class GestionMundo {
         System.out.println(" - HAS ELEGIDO EL ITEM: [ " + itemAcomprar.getNombre().toUpperCase() + " ]" + "PARA EL PERSONAJE: "+personajeCompra.getNombre());
 
         personajeDAO.guardarCompraBD(personajeCompra, itemAcomprar);
+    }
+
+    public void comprobacionViajarCiudad(Personaje personaje, Ciudad ciudadNueva) throws NivelInsuficienteException, BDException {
+
+        if (personaje.getNivel()>=ciudadNueva.getNivelMinimoAcceso()){
+            personaje.setCiudad_actual(ciudadNueva);
+            personajeDAO.actualizarCiudadViajeBD(personaje);
+        }
+        else {
+            LoggerCustom.escribirLog("NIVEL INSUFICIENTE: El personaje "+personaje.getNombre()+" no alcanza el nivel minimo de acceso para la ciudad. " +
+                    "| Nivel de "+personaje.getNombre()+": "+personaje.getNivel()+" | nivel requerido para viajar a esa ciudad: "+ciudadNueva.getNivelMinimoAcceso()+" |");
+            throw new NivelInsuficienteException("NIVEL INSUFICIENTE: El personaje "+personaje.getNombre()+" no alcanza el nivel minimo de acceso para la ciudad. " +
+                    "| Nivel de "+personaje.getNombre()+": "+personaje.getNivel()+" | nivel requerido para viajar a esa ciudad: "+ciudadNueva.getNivelMinimoAcceso()+" |");
+        }
+    }
+
+    public void viajarCiudad() throws BDException {
+        System.out.println("*********************************");
+        System.out.println("|       VIAJAR A CIUDAD         |");
+        System.out.println("*********************************");
+
+        // Mostrar personajes
+        System.out.println("\nID\tNOMBRE\t\tNIVEL\tCIUDAD ACTUAL");
+        System.out.println("--------------------------------------------------");
+
+        for (Personaje personaje : personajeDAO.getPersonajes()) {
+
+            String nombreCiudad;
+
+            if (personaje.getCiudad_actual() != null) {
+                nombreCiudad = personaje.getCiudad_actual().getNombre();
+            } else {
+                nombreCiudad = "Desterrado";
+            }
+
+            System.out.println(personaje.getId() + "\t" + personaje.getNombre() + "\t\t"
+                    + personaje.getNivel() + "\t" + nombreCiudad);
+        }
+
+        // Elegir personaje
+        Personaje personajeElegido = null;
+
+        while (personajeElegido == null) {
+
+            System.out.print("Elige el personaje por su ID => ");
+            int idPersonaje = sc.nextInt();
+
+            for (Personaje personaje : personajeDAO.getPersonajes()) {
+                if (personaje.getId() == idPersonaje) {
+                    personajeElegido = personaje;
+                    break;
+                }
+            }
+
+            if (personajeElegido == null) {
+                System.out.println("¡¡Ese ID no existe!!");
+            }
+        }
+
+        // Mostrar ciudades
+        System.out.println("\nID\tNOMBRE\t\tNIVEL MÍNIMO");
+        System.out.println("--------------------------------------------------");
+
+        for (Ciudad ciudad : ciudadDAO.getCiudades()) {
+            System.out.println(ciudad.getId() + "\t" + ciudad.getNombre() + "\t\t"
+                    + ciudad.getNivelMinimoAcceso());
+        }
+
+        // Elegir ciudad
+        Ciudad ciudadElegida = null;
+
+        while (ciudadElegida == null) {
+
+            System.out.print("Elige la ciudad destino por su ID => ");
+            int idCiudad = sc.nextInt();
+
+            for (Ciudad ciudad : ciudadDAO.getCiudades()) {
+                if (ciudad.getId() == idCiudad) {
+                    ciudadElegida = ciudad;
+                    break;
+                }
+            }
+
+            if (ciudadElegida == null) {
+                System.out.println("¡¡Ese ID no existe!!.");
+            }
+        }
+
+        // Intentar viajar
+        try {
+            comprobacionViajarCiudad(personajeElegido, ciudadElegida);
+
+            System.out.println("\n " + personajeElegido.getNombre() + " ha viajado a "
+                    + ciudadElegida.getNombre());
+
+        } catch (NivelInsuficienteException e) {
+
+            System.out.println("\n " + e.getMessage());
+        }
+    }
+
+    public void crearPersonaje() throws BDException {
+        System.out.println("*********************************");
+        System.out.println("|      CREAR NUEVO PERSONAJE    |");
+        System.out.println("*********************************");
+
+        System.out.print("Introduce el nombre del personaje: ");
+        sc.nextLine();
+        String nombre = sc.nextLine();
+
+        // Mostrar razas
+        System.out.println("\nID\tNOMBRE\t\tBON.VIDA\tBON.FUERZA");
+        System.out.println("--------------------------------------------------");
+
+        for (Raza raza : razaDAO.getRazas()) {
+            System.out.println(raza.getId() + "\t" + raza.getNombre() + "\t\t"
+                    + raza.getBonificadorVida() + "\t\t" + raza.getBonificadorFuerza());
+        }
+
+        // Elegir raza
+        Raza razaElegida = null;
+
+        while (razaElegida == null) {
+
+            System.out.print("Elige una raza por su ID => ");
+            int idRaza = sc.nextInt();
+
+            for (Raza raza : razaDAO.getRazas()) {
+                if (raza.getId() == idRaza) {
+                    razaElegida = raza;
+                    break;
+                }
+            }
+
+            if (razaElegida == null) {
+                System.out.println("¡¡Ese ID no existe!!.");
+            }
+        }
+
+        // Mostrar clases
+        System.out.println("\nID\tNOMBRE");
+        System.out.println("--------------------");
+
+        for (Clase clase : claseDAO.getClases()) {
+            System.out.println(clase.getId() + "\t" + clase.getNombre());
+        }
+
+        // Elegir clase
+        Clase claseElegida = null;
+
+        while (claseElegida == null) {
+
+            System.out.print("Elige una clase por su ID => ");
+            int idClase = sc.nextInt();
+
+            for (Clase clase : claseDAO.getClases()) {
+                if (clase.getId() == idClase) {
+                    claseElegida = clase;
+                    break;
+                }
+            }
+
+            if (claseElegida == null) {
+                System.out.println("¡¡Ese ID no existe!!.");
+            }
+        }
+
+        // Ciudad inicial que acepta nivel 1
+        Ciudad ciudadInicial = ciudadDAO.getCiudades().get(0);
+
+        personajeDAO.crearPersonajeBD(nombre, razaElegida, claseElegida, ciudadInicial);
+
+        System.out.println("\n Personaje [ " + nombre+ " ] creado en "
+                + ciudadInicial.getNombre() + "!");
+    }
+    public void mostrarEstadisticas() throws BDException {
+        ArrayList<Personaje> lista = personajeDAO.getPersonajes();
+
+        /// TOP 3 JUGADORES MÁS RICOS - ORDENAMOS CON COLLECTIONS.SORT Y COMPARATOR
+        ArrayList<Personaje> ordenados = new ArrayList<>(lista);
+        Collections.sort(ordenados, new Comparator<Personaje>() {
+            @Override
+            public int compare(Personaje p1, Personaje p2) {
+                return Integer.compare(p2.getOro(), p1.getOro());
+            }
+        });
+
+        System.out.println("=============================");
+        System.out.println("   TOP 3 JUGADORES MÁS RICOS");
+        System.out.println("=============================");
+        for (int i = 0; i < 3; i++) {
+            if (i < ordenados.size()) {
+                System.out.println((i + 1) + ") " + ordenados.get(i).getNombre()
+                        + " --> " + ordenados.get(i).getOro() + " monedas de oro");
+            }
+        }
+
+        /// CENSO DE CLASES, CONTAMOS CUANTOS PERSONAJES HAY DE CADA CLASE CON UN HASHMAP
+        HashMap<String, Integer> censoPorClase = new HashMap<>();
+        for (int i = 0; i < lista.size(); i++) {
+            String nombreClase = lista.get(i).getClase().getNombre();
+            if (censoPorClase.containsKey(nombreClase)) {
+                censoPorClase.put(nombreClase, censoPorClase.get(nombreClase) + 1);
+            } else {
+                censoPorClase.put(nombreClase, 1);
+            }
+        }
+
+        System.out.println("\n=============================");
+        System.out.println("      CENSO DE CLASES");
+        System.out.println("=============================");
+        for (String clase : censoPorClase.keySet()) {
+            System.out.println(clase + ": " + censoPorClase.get(clase) + " personaje");
+        }
     }
 }

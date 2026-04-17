@@ -100,7 +100,6 @@ public class Personaje {
     }
 
     public void aniardirItem(Item itemNuevo, Integer numeroItems){
-        boolean encontrado=false;
 
         for (Item itemAbuscar : this.inventario.keySet()){
             if (itemAbuscar.getId()== itemNuevo.getId()){
@@ -113,5 +112,9 @@ public class Personaje {
 
     public void aniadirHabilidad (Habilidad nuevaHabilidad){
         this.hablidades.add(nuevaHabilidad);
+    }
+
+    public List<Habilidad> getHablidades() {
+        return hablidades;
     }
 }

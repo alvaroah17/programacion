@@ -2,6 +2,7 @@ package rpg.dao;
 
 import rpg.exception.BDException;
 import rpg.model.Inventario;
+import rpg.utils.LoggerCustom;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,15 +26,16 @@ public class InventarioDAO {
              ResultSet resultset = statement.executeQuery("SELECT * FROM inventarios")) {
 
             while (resultset.next()) {
-                int idPersonaje = resultset.getInt("idPersonaje");
-                int idItem = resultset.getInt("idItem");
+                int idPersonaje = resultset.getInt("id_personaje");
+                int idItem = resultset.getInt("id_item");
                 int cantidad = resultset.getInt("cantidad");
 
                 // He ajustado la creación del objeto a tus nuevos atributos
                 inventarios.add(new Inventario(idPersonaje, idItem, cantidad));
             }
         } catch (SQLException e) {
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos"+e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos"+e.getMessage());
         }
     }
 }

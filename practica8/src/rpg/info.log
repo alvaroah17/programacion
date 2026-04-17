@@ -1,3 +1,9 @@
 
 [2026-04-09T18:40:33.867854537] ERROR: Ha ocurrido un error en la conexion con la base de datos --> ERROR: relation "raazas" does not exist
   Position: 15
+[2026-04-17T03:44:28.634809556] ERROR: Ha ocurrido un error en la conexion con la base de datosThe column name nivelMinimoAcceso was not found in this ResultSet.
+[2026-04-17T03:46:42.319347315] ERROR: Ha ocurrido un error en la conexion con la base de datosThe column name usosMaximos was not found in this ResultSet.
+[2026-04-17T03:47:19.075764579] ERROR: Ha ocurrido un error en la conexion con la base de datosThe column name idClase was not found in this ResultSet.
+[2026-04-17T03:48:17.396208777] ERROR: Ha ocurrido un error en la conexion con la base de datosThe column name idPersonaje was not found in this ResultSet.
+[2026-04-17T03:48:54.239783571] ERROR: Ha ocurrido un error al añadir habilidad al personaje con nombre: Grog el Destructor y con id: 1 --> ERROR: duplicate key value violates unique constraint "personajes_habilidades_pkey"
+  Detail: Key (id_personaje, id_habilidad)=(1, 1) already exists.

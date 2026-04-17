@@ -2,6 +2,8 @@ package rpg.dao;
 
 import rpg.exception.BDException;
 import rpg.model.Ciudad;
+import rpg.utils.LoggerCustom;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -26,12 +28,17 @@ public class CiudadDAO {
             while (resultset.next()) {
                 int id = resultset.getInt("id");
                 String nombre = resultset.getString("nombre");
-                int nivelMinimoAcceso = resultset.getInt("nivelMinimoAcceso");
+                int nivelMinimoAcceso = resultset.getInt("nivel_minimo_acceso");
 
                 ciudades.add(new Ciudad(id, nombre, nivelMinimoAcceso));
             }
         } catch (SQLException e) {
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos"+e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos"+e.getMessage());
         }
+    }
+
+    public ArrayList<Ciudad> getCiudades() {
+        return ciudades;
     }
 }

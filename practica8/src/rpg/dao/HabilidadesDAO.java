@@ -2,6 +2,8 @@ package rpg.dao;
 
 import rpg.exception.BDException;
 import rpg.model.Habilidad;
+import rpg.utils.LoggerCustom;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -27,33 +29,14 @@ public class HabilidadesDAO {
                 int id = resultset.getInt("id");
                 String nombre = resultset.getString("nombre");
                 int dañoBase = resultset.getInt("dano_Base");
-                int usosMaximos = resultset.getInt("usosMaximos");
-                int idClase = resultset.getInt("idClase");
+                int usosMaximos = resultset.getInt("usos_maximos");
+                int idClase = resultset.getInt("id_Clase");
 
                 habilidades.add(new Habilidad(id, nombre, dañoBase, usosMaximos, idClase));
             }
         } catch (SQLException e) {
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
-        }
-    }
-
-    public void cargarHabilidadesPersonaje() throws BDException{
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWD);
-             Statement statement = connection.createStatement();
-             ResultSet resultset = statement.executeQuery("SELECT h.id, h.nombre, h.dano_base, h.usos_maximos, ph.equipada_combate " +
-                                                                "FROM Habilidades h " +
-                                                                "JOIN Personajes_Habilidades ph ON h.id = ph.id_habilidad " +
-                                                                "WHERE ph.id_personaje = ?"))
-        {
-            while (resultset.next()) {
-                int id = resultset.getInt("id");
-                String nombre = resultset.getString("nombre");
-                int dañoBase = resultset.getInt("dañoBase");
-                int usosMaximos = resultset.getInt("usosMaximos");
-                int idClase = resultset.getInt("idClase");
-            }
-        } catch (SQLException e) {
-            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos");
+            LoggerCustom.escribirLog("ERROR: Ha ocurrido un error en la conexion con la base de datos"+e.getMessage());
+            throw new BDException("ERROR: Ha ocurrido un error en la conexion con la base de datos"+e.getMessage());
         }
     }
 }
